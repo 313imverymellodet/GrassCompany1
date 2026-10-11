@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sway Services | Landscaping, Snow Removal &amp; Concrete in Metro Detroit</title>
+  <meta name="description" content="Sway Services is a Detroit-based, Michigan Licensed Residential Builder offering landscaping, snow &amp; ice management, concrete &amp; masonry, exterior improvements and property maintenance across Metro Detroit. Same-day &amp; emergency service. Call 313-742-8903.">
+  <meta name="theme-color" content="#0d2418">
+  <link rel="canonical" href="https://swayservices.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sway Services | Metro Detroit Property Services">
+  <meta property="og:description" content="Landscaping, snow &amp; ice, concrete, exterior construction and property maintenance. Residential &amp; commercial. Get it done the Sway Way.">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2418'/%3E%3Cpath d='M18 44c10 2 26-4 28-24-12 0-26 6-28 24zm0 0c4-8 10-13 18-17' fill='%23c4f04a' stroke='%230d2418' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Sway Services",
+    "founder": { "@type": "Person", "name": "Juan Walker Jr." },
+    "telephone": "+1-313-742-8903",
+    "email": "swayservicesss@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "12609 Stout St",
+      "addressLocality": "Detroit",
+      "addressRegion": "MI",
+      "addressCountry": "US"
+    },
+    "areaServed": { "@type": "Place", "name": "Metro Detroit, Michigan" },
+    "slogan": "Get the job done the Sway Way.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Property Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landscaping & Grounds Maintenance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snow & Ice Management" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Concrete & Masonry" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Exterior Construction & Improvements" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Contracting & Property Maintenance" } }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --forest: #0d2418;
+      --forest-2: #143322;
+      --forest-3: #1d4630;
+      --lime: #c4f04a;
+      --lime-deep: #9fcc22;
+      --cream: #f5f2ea;
+      --paper: #fbfaf6;
+      --ink: #14201a;
+      --muted: #56645b;
+      --line: #dfdbcf;
+      --snow: #e9f1f6;
+      --radius: 18px;
+      --wrap: 1200px;
+      --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+      --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; overflow-x: clip; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-stretch: 78%;
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    p { margin: 0 0 1em; }
+
+    .wrap { width: min(var(--wrap), 100% - 40px); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--display); font-stretch: 110%;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--forest-3);
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 3px; background: var(--lime-deep); border-radius: 3px; }
+    .on-dark .eyebrow { color: var(--lime); }
+    .on-dark .eyebrow::before { background: var(--lime); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px 24px; border-radius: 999px; border: 2px solid transparent;
+      font-family: var(--display); font-stretch: 105%; font-weight: 800;
+      font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; transition: transform .2s, background .2s, color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-lime { background: var(--lime); color: var(--forest); }
+    .btn-lime:hover { background: #d4ff5c; }
+    .btn-ghost { border-color: rgba(255,255,255,.35); color: #fff; }
+    .btn-ghost:hover { border-color: var(--lime); color: var(--lime); }
+    .btn-dark { background: var(--forest); color: #fff; }
+    .btn-dark:hover { background: var(--forest-3); }
+    :focus-visible { outline: 3px solid var(--lime-deep); outline-offset: 3px; }
+
+    /* ---------- Header ---------- */
+    .header {
+      position: fixed; inset: 0 0 auto; z-index: 50;
+      transition: background .3s, box-shadow .3s;
+    }
+    .header.scrolled { background: rgba(13,36,24,.94); backdrop-filter: blur(10px); box-shadow: 0 6px 30px rgba(0,0,0,.18); }
+    .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 20px; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+    .logo-mark { width: 42px; height: 42px; flex: none; }
+    .logo-text { line-height: 1; }
+    .logo-text strong { display: block; font-family: var(--display); font-stretch: 120%; font-weight: 900; font-size: 22px; letter-spacing: 0.04em; }
+    .logo-text span { display: block; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--lime); margin-top: 4px; font-weight: 700; }
+    .nav { display: flex; align-items: center; gap: 30px; }
+    .nav a.link { color: rgba(255,255,255,.82); text-decoration: none; font-weight: 600; font-size: 15px; transition: color .2s; }
+    .nav a.link:hover { color: var(--lime); }
+    .nav .btn { padding: 11px 18px; font-size: 14px; }
+    .menu-toggle { display: none; background: none; border: 0; color: #fff; padding: 8px; cursor: pointer; }
+    .menu-toggle svg { width: 28px; height: 28px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; color: #fff; overflow: hidden;
+      background:
+        radial-gradient(900px 500px at 85% 10%, rgba(196,240,74,.13), transparent 60%),
+        linear-gradient(160deg, #0d2418 0%, #0f2c1d 55%, #12301f 100%);
+      padding: 150px 0 110px;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; opacity: .07; pointer-events: none;
+      background-image: repeating-linear-gradient(115deg, #fff 0 2px, transparent 2px 46px);
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 60px; align-items: center; }
+    .hero h1 { font-size: clamp(54px, 7.6vw, 104px); font-weight: 900; margin: 22px 0 26px; }
+    .hero h1 .accent { color: var(--lime); display: block; }
+    .hero h1 .way { position: relative; white-space: nowrap; }
+    .hero h1 .way svg { position: absolute; left: 0; right: 0; bottom: -0.16em; width: 100%; height: .22em; }
+    .hero-lede { font-size: 19px; color: rgba(255,255,255,.8); max-width: 540px; margin-bottom: 34px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 44px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+    .badges li {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+    }
+    .badges svg { width: 16px; height: 16px; color: var(--lime); }
+
+    .hero-art { position: relative; }
+    .scene {
+      border-radius: 28px; overflow: hidden; aspect-ratio: 520 / 600;
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
+      transform: rotate(1.5deg);
+    }
+    .scene svg { width: 100%; height: 100%; }
+    .float-card {
+      position: absolute; background: var(--paper); color: var(--ink);
+      border-radius: 16px; padding: 16px 18px; box-shadow: 0 20px 40px -12px rgba(0,0,0,.45);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .float-card .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+    .float-card .ic svg { width: 24px; height: 24px; }
+    .float-card strong { display: block; font-family: var(--display); font-stretch: 85%; font-size: 22px; line-height: 1; text-transform: uppercase; }
+    .float-card small { color: var(--muted); font-size: 13px; font-weight: 500; }
+    .fc-1 { left: -34px; bottom: 54px; }
+    .fc-1 .ic { background: var(--lime); color: var(--forest); }
+    .fc-2 { right: -18px; top: 38px; }
+    .fc-2 .ic { background: var(--forest); color: var(--lime); }
+
+    /* ---------- Ticker ---------- */
+    .ticker { background: var(--lime); color: var(--forest); overflow: hidden; border-block: 2px solid var(--forest); }
+    .ticker-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+    .ticker-track span {
+      display: inline-flex; align-items: center; gap: 28px; padding: 16px 14px;
+      font-family: var(--display); font-stretch: 90%; font-weight: 900; font-size: 22px;
+      text-transform: uppercase; letter-spacing: 0.02em; white-space: nowrap;
+    }
+    .ticker-track span::after { content: "✦"; font-size: 16px; padding-left: 14px; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* ---------- Sections ---------- */
+    section { position: relative; }
+    .section { padding: 110px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+    .section-head h2 { font-size: clamp(40px, 5.4vw, 68px); font-weight: 900; margin-top: 16px; }
+    .section-head p { color: var(--muted); font-size: 18px; margin: 0; max-width: 520px; }
+
+    /* Services */
+    .services { background: var(--paper); }
+    .svc-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+    .svc {
+      grid-column: span 2; position: relative;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 30px 28px 28px; display: flex; flex-direction: column;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .svc:nth-child(4), .svc:nth-child(5) { grid-column: span 3; }
+    .svc:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -24px rgba(13,36,24,.35); border-color: var(--forest-3); }
+    .svc-num { position: absolute; top: 24px; right: 26px; font-family: var(--display); font-stretch: 70%; font-weight: 800; font-size: 15px; color: #b6b1a3; }
+    .svc-icon { width: 58px; height: 58px; border-radius: 16px; background: var(--forest); color: var(--lime); display: grid; place-items: center; margin-bottom: 22px; transition: transform .3s; }
+    .svc:hover .svc-icon { transform: rotate(-6deg) scale(1.05); }
+    .svc-icon svg { width: 30px; height: 30px; }
+    .svc h3 { font-size: 28px; font-weight: 850; margin-bottom: 12px; }
+    .svc p { color: var(--muted); font-size: 16px; }
+    .svc ul { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .svc li { font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 999px; background: var(--cream); color: var(--forest-3); }
+    .svc.snow { background: linear-gradient(180deg, #fff 0%, var(--snow) 100%); }
+    .svc.snow .svc-icon { background: #1b3a52; color: #cfe8ff; }
+
+    /* Emergency band */
+    .emergency { background: var(--forest); color: #fff; overflow: hidden; }
+    .emergency .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; padding: 54px 0; }
+    .pulse { width: 74px; height: 74px; border-radius: 50%; background: var(--lime); color: var(--forest); display: grid; place-items: center; position: relative; }
+    .pulse svg { width: 34px; height: 34px; }
+    .pulse::before, .pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--lime); animation: ring 2.4s ease-out infinite; }
+    .pulse::after { animation-delay: 1.2s; }
+    @keyframes ring { from { transform: scale(1); opacity: .8; } to { transform: scale(1.9); opacity: 0; } }
+    .emergency h2 { font-size: clamp(30px, 3.6vw, 46px); font-weight: 900; }
+    .emergency p { color: rgba(255,255,255,.72); margin: 8px 0 0; }
+
+    /* About */
+    .about { background: var(--cream); }
+    .about .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+    .portrait {
+      position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(196,240,74,.25), transparent 55%),
+        linear-gradient(160deg, var(--forest-3), var(--forest));
+      color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px;
+    }
+    .portrait::before {
+      content: "SWAY"; position: absolute; top: 18px; left: -10px; right: -10px;
+      font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 160px; line-height: .85;
+      color: transparent; -webkit-text-stroke: 1.5px rgba(196,240,74,.35); letter-spacing: -0.02em;
+    }
+    .portrait-badge {
+      position: absolute; top: 30px; right: 30px; width: 118px; height: 118px;
+      animation: spin 24s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .portrait h3 { font-size: 44px; font-weight: 900; }
+    .portrait p { margin: 8px 0 0; color: var(--lime); font-weight: 600; letter-spacing: .04em; }
+    .about-copy h2 { font-size: clamp(40px, 5vw, 64px); font-weight: 900; margin: 16px 0 26px; }
+    .about-copy > p { color: #38463d; font-size: 18px; }
+    .mission {
+      margin: 32px 0 36px; padding: 26px 28px; border-left: 5px solid var(--lime-deep);
+      background: #fff; border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .mission span { font-family: var(--display); font-stretch: 110%; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--forest-3); }
+    .mission p { font-size: 20px; font-weight: 500; margin: 8px 0 0; color: var(--ink); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stat { border-top: 2px solid var(--forest); padding-top: 14px; }
+    .stat strong { display: block; font-family: var(--display); font-stretch: 75%; font-weight: 900; font-size: 50px; line-height: 1; color: var(--forest); }
+    .stat span { font-size: 14px; color: var(--muted); font-weight: 500; }
+
+    /* Process */
+    .process { background: var(--forest); color: #fff; }
+    .process .section-head p { color: rgba(255,255,255,.7); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+    .step { position: relative; padding: 34px 30px; border-radius: var(--radius); background: var(--forest-2); border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+    .step::before {
+      counter-increment: step; content: "0" counter(step);
+      position: absolute; right: 18px; top: -14px;
+      font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size: 120px; line-height: 1;
+      color: rgba(196,240,74,.1);
+    }
+    .step h3 { font-size: 28px; font-weight: 850; margin: 18px 0 12px; color: var(--lime); }
+    .step p { color: rgba(255,255,255,.72); margin: 0; }
+    .step-ic { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--lime); display: grid; place-items: center; color: var(--lime); }
+    .step-ic svg { width: 24px; height: 24px; }
+
+    /* Reviews */
+    .reviews { background: var(--paper); }
+    .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 30px;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .review:nth-child(2) { background: var(--forest); color: #fff; border-color: var(--forest); transform: translateY(24px); }
+    .review:nth-child(2) blockquote { color: rgba(255,255,255,.88); }
+    .review:nth-child(2) .who span { color: var(--lime); }
+    .stars { display: flex; gap: 3px; color: var(--lime-deep); margin-bottom: 20px; }
+    .review:nth-child(2) .stars { color: var(--lime); }
+    .stars svg { width: 18px; height: 18px; }
+    .review blockquote { margin: 0 0 28px; font-size: 18px; line-height: 1.55; color: #2c3830; flex: 1; }
+    .quote-mark { position: absolute; top: 18px; right: 26px; font-family: Georgia, serif; font-size: 90px; line-height: 1; color: var(--lime); opacity: .55; }
+    .who { display: flex; align-items: center; gap: 14px; }
+    .avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--lime); color: var(--forest); display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 18px; flex: none; }
+    .who strong { display: block; font-size: 16px; }
+    .who span { font-size: 14px; color: var(--muted); }
+
+    /* Contact */
+    .contact { background: var(--cream); padding-bottom: 120px; }
+    .contact-card {
+      display: grid; grid-template-columns: .85fr 1.15fr; border-radius: 30px; overflow: hidden;
+      box-shadow: 0 40px 80px -40px rgba(13,36,24,.45);
+    }
+    .contact-info { background: var(--forest); color: #fff; padding: 52px 46px; position: relative; overflow: hidden; }
+    .contact-info::after {
+      content: ""; position: absolute; right: -80px; bottom: -80px; width: 260px; height: 260px; border-radius: 50%;
+      background: repeating-radial-gradient(circle, rgba(196,240,74,.18) 0 2px, transparent 2px 18px);
+    }
+    .contact-info h2 { font-size: clamp(38px, 4.4vw, 56px); font-weight: 900; margin: 16px 0 18px; }
+    .contact-info > p { color: rgba(255,255,255,.72); }
+    .info-list { list-style: none; padding: 0; margin: 34px 0 0; display: grid; gap: 22px; position: relative; z-index: 1; }
+    .info-list li { display: flex; gap: 16px; align-items: flex-start; }
+    .info-list .ic { width: 46px; height: 46px; border-radius: 12px; background: rgba(196,240,74,.12); color: var(--lime); display: grid; place-items: center; flex: none; }
+    .info-list .ic svg { width: 22px; height: 22px; }
+    .info-list small { display: block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 700; }
+    .info-list a, .info-list b { font-size: 18px; font-weight: 600; text-decoration: none; word-break: break-word; }
+    .info-list a:hover { color: var(--lime); }
+
+    .form { background: #fff; padding: 52px 46px; }
+    .form h3 { font-size: 32px; font-weight: 900; margin-bottom: 6px; }
+    .form > p { color: var(--muted); margin-bottom: 28px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .field label, .field legend { font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--forest-3); padding: 0; }
+    .field input, .field select, .field textarea {
+      font: inherit; font-size: 16px; color: var(--ink);
+      border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 15px; background: var(--paper);
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--forest-3); background: #fff; box-shadow: 0 0 0 4px rgba(196,240,74,.35); }
+    fieldset.field { border: 0; margin: 0 0 16px; padding: 0; }
+    .toggle { display: flex; gap: 10px; flex-wrap: wrap; }
+    .toggle label { position: relative; cursor: pointer; }
+    .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+    .toggle span {
+      display: inline-block; padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--line);
+      font-size: 15px; font-weight: 600; color: var(--ink); background: var(--paper); transition: all .2s;
+    }
+    .toggle input:checked + span { background: var(--forest); color: var(--lime); border-color: var(--forest); }
+    .toggle input:focus-visible + span { outline: 3px solid var(--lime-deep); outline-offset: 2px; }
+    .form .btn { width: 100%; margin-top: 6px; padding: 17px 24px; }
+    .form-note { font-size: 13px; color: var(--muted); text-align: center; margin: 14px 0 0; }
+    .hp { position: absolute; left: -9999px; }
+
+    /* Footer */
+    .footer { overflow: hidden; background: #091a11; color: rgba(255,255,255,.7); padding: 70px 0 120px; }
+    .footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+    .footer h4 { font-family: var(--display); font-stretch: 110%; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--lime); margin: 0 0 16px; }
+    .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: var(--lime); }
+    .footer .tag { margin-top: 18px; max-width: 340px; }
+    .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; margin-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 14px; }
+    .sway-big {
+      grid-column: 1 / -1; font-family: var(--display); font-stretch: 125%; font-weight: 900;
+      font-size: clamp(64px, 17vw, 240px); line-height: .8; letter-spacing: -0.02em; text-transform: uppercase;
+      color: transparent; -webkit-text-stroke: 1.5px rgba(196,240,74,.25); margin-top: 30px; user-select: none; white-space: nowrap;
+    }
+
+    /* Mobile call bar */
+    .callbar {
+      position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: none; gap: 10px;
+      padding: 10px; border-radius: 999px; background: rgba(13,36,24,.95); backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+    .callbar .btn { flex: 1; padding: 13px 14px; font-size: 14px; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 70px; }
+      .hero-art { max-width: 520px; margin-inline: auto; width: 100%; }
+      .about .wrap { grid-template-columns: 1fr; gap: 50px; }
+      .portrait { aspect-ratio: 16 / 10; max-height: 460px; }
+      .contact-card { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav { position: fixed; inset: 76px 0 auto; flex-direction: column; align-items: stretch; gap: 0; background: var(--forest); padding: 10px 20px 24px; display: none; box-shadow: 0 20px 40px rgba(0,0,0,.3); }
+      .nav.open { display: flex; }
+      .nav a.link { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 17px; }
+      .nav .btn { margin-top: 16px; }
+      .menu-toggle { display: block; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .svc, .svc:nth-child(4), .svc:nth-child(5) { grid-column: span 1; }
+      .svc:nth-child(5) { grid-column: 1 / -1; }
+      .steps, .review-grid { grid-template-columns: 1fr; }
+      .review:nth-child(2) { transform: none; }
+      .emergency .wrap { grid-template-columns: auto 1fr; }
+      .emergency .btn { grid-column: 1 / -1; justify-self: start; }
+      .footer .wrap { grid-template-columns: 1fr 1fr; }
+      .footer .wrap > div:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      .wrap { width: calc(100% - 32px); }
+      .section { padding: 80px 0; }
+      .hero { padding: 120px 0 80px; }
+      .hero-lede { font-size: 17px; }
+      .hero-ctas .btn { flex: 1 1 100%; }
+      .fc-1 { left: -6px; bottom: 24px; }
+      .fc-2 { right: -6px; top: 64px; }
+      .float-card { padding: 12px 14px; }
+      .float-card strong { font-size: 18px; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .svc:nth-child(5) { grid-column: auto; }
+      .stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+      .stat strong { font-size: 38px; }
+      .stat span { font-size: 12.5px; }
+      .portrait { aspect-ratio: 4 / 5; }
+      .portrait::before { font-size: 110px; }
+      .portrait-badge { width: 92px; height: 92px; top: 22px; right: 22px; }
+      .emergency .wrap { grid-template-columns: 1fr; gap: 22px; }
+      .emergency .btn { width: 100%; }
+      .contact-info, .form { padding: 38px 24px; }
+      .grid-2 { grid-template-columns: 1fr; gap: 0; }
+      .footer .wrap { grid-template-columns: 1fr; }
+      .callbar { display: flex; }
+      .logo-text span { letter-spacing: .22em; }
+    }
+  </style>
+</head>
+<body class="no-js">
+
+  <!-- SVG icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></g></symbol>
+      <symbol id="i-snow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 6l14.2 12M19.1 6 4.9 18"/><path d="m9 4 3 2 3-2M9 20l3-2 3 2M3.6 9.4l3.4.6-1 3.3M20.4 14.6l-3.4-.6 1-3.3M3.6 14.6 7 14l-1-3.3M20.4 9.4 17 10l1 3.3"/></g></symbol>
+      <symbol id="i-brick" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.3h18M3 14.7h18M9 4v5.3M15 9.3v5.4M9 14.7V20"/></g></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></g></symbol>
+      <symbol id="i-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></g></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></g></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+      <symbol id="i-clip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3h6v3H9zM9 11h6M9 15h4"/></g></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="top">
+    <div class="wrap">
+      <a href="#top" class="logo" aria-label="Sway Services home">
+        <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#c4f04a"/>
+          <path d="M17 46c11 2 28-5 30-27-13 0-28 7-30 27Z" fill="#0d2418"/>
+          <path d="M17 46c5-9 11-14 20-18" fill="none" stroke="#c4f04a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text"><strong>SWAY</strong><span>Services</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a class="link" href="#services">Services</a>
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#reviews">Reviews</a>
+        <a class="link" href="#contact">Contact</a>
+        <a class="btn btn-lime" href="tel:+13137428903"><svg><use href="#i-phone"/></svg>313-742-8903</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero on-dark">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Metro Detroit Property Services</span>
+          <h1>Built right.<br>Kept right.
+            <span class="accent">The <span class="way">Sway Way.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14C60 4 160 2 297 10" fill="none" stroke="#c4f04a" stroke-width="5" stroke-linecap="round" opacity=".55"/></svg></span></span>
+          </h1>
+          <p class="hero-lede">Landscaping, snow &amp; ice, concrete, and exterior improvements for Detroit homes and businesses, done by a Michigan Licensed Residential Builder who started this company at 16.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-lime" href="#contact">Get a free estimate <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="tel:+13137428903"><svg><use href="#i-phone"/></svg>Call 313-742-8903</a>
+          </div>
+          <ul class="badges">
+            <li><svg><use href="#i-shield"/></svg>MI Licensed Residential Builder</li>
+            <li><svg><use href="#i-home"/></svg>Residential &amp; Commercial</li>
+            <li><svg><use href="#i-bolt"/></svg>Same-Day &amp; Emergency</li>
+          </ul>
+        </div>
+
+        <div class="hero-art reveal">
+          <div class="scene">
+            <svg viewBox="0 0 520 600" role="img" aria-label="Illustration of a Detroit property shown half in summer with a striped lawn and half in winter covered in snow">
+              <defs>
+                <linearGradient id="skyS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4e8"/><stop offset="1" stop-color="#d9f0f7"/></linearGradient>
+                <linearGradient id="skyW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4f66"/><stop offset="1" stop-color="#9fb3c6"/></linearGradient>
+                <clipPath id="summer"><polygon points="0,0 330,0 190,600 0,600"/></clipPath>
+                <clipPath id="winter"><polygon points="330,0 520,0 520,600 190,600"/></clipPath>
+                <g id="skyline">
+                  <path d="M0 330V292h22v-18h16v18h14v-30h20v30h10v-46h8v-10h10v10h8v46h12v-22h18v22h10v-60h26v60h6v-38h14v38h8v-74l12-14 12 14v74h10v-34h16v34h12v-20h14v20h10v-52h8v-26h4v26h8v52h14v-28h20v28h12V258h18l10-12h20l10 12h18v72h8v-24h18v24h12v-40h24v40h10v-18h14v18h10v-30h18v30h22v0Z"/>
+                </g>
+                <g id="house">
+                  <path d="M0 74 70 18l70 56v66H0Z"/>
+                </g>
+              </defs>
+
+              <!-- SUMMER -->
+              <g clip-path="url(#summer)">
+                <rect width="520" height="330" fill="url(#skyS)"/>
+                <circle cx="84" cy="92" r="40" fill="#ffe27a"/>
+                <circle cx="84" cy="92" r="58" fill="#ffe27a" opacity=".25"/>
+                <use href="#skyline" fill="#5f8fa8" opacity=".55"/>
+                <rect y="330" width="520" height="270" fill="#4e9d43"/>
+                <path fill="#3e8a37" d="M-700 600h120l655.2-270H48.8ZM-460 600h120l468-270h-26.4ZM-220 600h120l280.8-270h-26.4ZM20 600h120l93.6-270h-26.4ZM260 600h120l-93.6-270H260ZM500 600h120L339.2 330h-26.4ZM740 600h120L392 330h-26.4ZM980 600h120L444.8 330h-26.4ZM1220 600h120L497.6 330h-26.4Z"/>
+                <!-- house -->
+                <g transform="translate(150 196)">
+                  <use href="#house" fill="#f3ead8"/>
+                  <path d="M-10 78 70 12l80 66" fill="none" stroke="#2c4a36" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+                  <rect x="56" y="92" width="28" height="48" fill="#2c4a36"/>
+                  <rect x="18" y="88" width="24" height="22" fill="#9ed2ea"/>
+                  <rect x="98" y="88" width="24" height="22" fill="#9ed2ea"/>
+                </g>
+                <!-- shrubs -->
+                <g fill="#2f7a2c"><circle cx="138" cy="336" r="16"/><circle cx="160" cy="340" r="12"/><circle cx="300" cy="338" r="14"/></g>
+                <!-- walkway -->
+                <path d="M210 336h20l40 264h-100Z" fill="#d8d2c4"/>
+                <path d="M190 470h68M180 540h86" stroke="#bfb8a8" stroke-width="3"/>
+              </g>
+
+              <!-- WINTER -->
+              <g clip-path="url(#winter)">
+                <rect width="520" height="330" fill="url(#skyW)"/>
+                <use href="#skyline" fill="#2b3c4f" opacity=".7"/>
+                <rect y="330" width="520" height="270" fill="#eef4f8"/>
+                <path fill="#dde8f0" d="M-700 600h120l655.2-270H48.8ZM-460 600h120l468-270h-26.4ZM-220 600h120l280.8-270h-26.4ZM20 600h120l93.6-270h-26.4ZM260 600h120l-93.6-270H260ZM500 600h120L339.2 330h-26.4ZM740 600h120L392 330h-26.4ZM980 600h120L444.8 330h-26.4ZM1220 600h120L497.6 330h-26.4Z"/>
+                <g transform="translate(150 196)">
+                  <use href="#house" fill="#e6e1d6"/>
+                  <path d="M-10 78 70 12l80 66" fill="none" stroke="#ffffff" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>
+                  <rect x="56" y="92" width="28" height="48" fill="#24384a"/>
+                  <rect x="98" y="88" width="24" height="22" fill="#ffd27a"/>
+                </g>
+                <g fill="#fff"><ellipse cx="300" cy="336" rx="18" ry="10"/></g>
+                <!-- cleared, salted path -->
+                <path d="M210 336h20l40 264h-100Z" fill="#b7c2c9"/>
+                <g fill="#ffffff" opacity=".8"><circle cx="232" cy="420" r="2"/><circle cx="245" cy="470" r="2"/><circle cx="220" cy="510" r="2"/><circle cx="252" cy="560" r="2.5"/><circle cx="214" cy="575" r="2"/></g>
+                <!-- snowflakes -->
+                <g fill="#fff" opacity=".9">
+                  <circle cx="380" cy="60" r="3"/><circle cx="440" cy="120" r="2.5"/><circle cx="480" cy="40" r="2"/>
+                  <circle cx="350" cy="170" r="2.5"/><circle cx="420" cy="210" r="3"/><circle cx="495" cy="190" r="2"/>
+                  <circle cx="470" cy="270" r="2.5"/><circle cx="300" cy="90" r="2"/><circle cx="400" cy="290" r="2"/>
+                </g>
+              </g>
+
+              <!-- divider -->
+              <path d="M330 0 190 600" stroke="#0d2418" stroke-width="6"/>
+              <path d="M330 0 190 600" stroke="#c4f04a" stroke-width="2"/>
+              <g font-family="Archivo, sans-serif" font-weight="800" font-size="13" letter-spacing="2">
+                <rect x="22" y="22" width="92" height="28" rx="14" fill="#0d2418"/>
+                <text x="68" y="41" text-anchor="middle" fill="#c4f04a">SUMMER</text>
+                <rect x="406" y="22" width="92" height="28" rx="14" fill="#0d2418"/>
+                <text x="452" y="41" text-anchor="middle" fill="#cfe8ff">WINTER</text>
+              </g>
+            </svg>
+          </div>
+          <div class="float-card fc-1">
+            <div class="ic"><svg><use href="#i-check"/></svg></div>
+            <div><strong>Thousands</strong><small>of projects completed</small></div>
+          </div>
+          <div class="float-card fc-2">
+            <div class="ic"><svg><use href="#i-clock"/></svg></div>
+            <div><strong>Year-round</strong><small>Spring to snowfall</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Ticker ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Lawn Care</span><span>Snow Removal</span><span>Concrete</span><span>Masonry</span><span>Exterior Builds</span><span>Property Maintenance</span><span>Residential</span><span>Commercial</span>
+        <span>Lawn Care</span><span>Snow Removal</span><span>Concrete</span><span>Masonry</span><span>Exterior Builds</span><span>Property Maintenance</span><span>Residential</span><span>Commercial</span>
+      </div>
+    </div>
+
+    <!-- ===== Services ===== -->
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">What we do</span>
+            <h2>One crew.<br>Every season.</h2>
+          </div>
+          <p>From spring cleanups to midnight snow pushes, Sway Services handles the outside of your property so you don't have to juggle five different contractors.</p>
+        </div>
+
+        <div class="svc-grid">
+          <article class="svc reveal">
+            <span class="svc-num">01</span>
+            <div class="svc-icon"><svg><use href="#i-leaf"/></svg></div>
+            <h3>Landscaping &amp; Grounds Maintenance</h3>
+            <p>Sharp, healthy, curb-ready grounds with routine care and seasonal upgrades.</p>
+            <ul><li>Lawn care</li><li>Trimming</li><li>Mulch &amp; beds</li><li>Cleanups</li></ul>
+          </article>
+          <article class="svc snow reveal">
+            <span class="svc-num">02</span>
+            <div class="svc-icon"><svg><use href="#i-snow"/></svg></div>
+            <h3>Snow &amp; Ice Management</h3>
+            <p>Keeping driveways, lots and walkways safe and open through Michigan winters.</p>
+            <ul><li>Plowing</li><li>Shoveling</li><li>Salting</li><li>De-icing</li></ul>
+          </article>
+          <article class="svc reveal">
+            <span class="svc-num">03</span>
+            <div class="svc-icon"><svg><use href="#i-brick"/></svg></div>
+            <h3>Concrete &amp; Masonry</h3>
+            <p>Solid, clean concrete and brickwork built to handle Detroit's freeze and thaw.</p>
+            <ul><li>Driveways</li><li>Walkways</li><li>Patios</li><li>Steps &amp; repairs</li></ul>
+          </article>
+          <article class="svc reveal">
+            <span class="svc-num">04</span>
+            <div class="svc-icon"><svg><use href="#i-home"/></svg></div>
+            <h3>Exterior Construction &amp; Improvements</h3>
+            <p>Licensed-builder workmanship on the projects that change how your property looks and works.</p>
+            <ul><li>Exterior upgrades</li><li>Repairs</li><li>Outdoor living</li><li>Curb appeal</li></ul>
+          </article>
+          <article class="svc reveal">
+            <span class="svc-num">05</span>
+            <div class="svc-icon"><svg><use href="#i-tools"/></svg></div>
+            <h3>General Contracting &amp; Property Maintenance</h3>
+            <p>One reliable point of contact for ongoing upkeep and projects on homes, rentals and commercial sites.</p>
+            <ul><li>Ongoing upkeep</li><li>Project management</li><li>Rental &amp; commercial</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Emergency ===== -->
+    <section class="emergency on-dark" aria-label="Emergency service">
+      <div class="wrap reveal">
+        <div class="pulse"><svg><use href="#i-bolt"/></svg></div>
+        <div>
+          <h2>Same-day &amp; emergency service</h2>
+          <p>Surprise snowfall, storm damage, or a property that needs attention today? Call and we'll get a crew moving.</p>
+        </div>
+        <a class="btn btn-lime" href="tel:+13137428903"><svg><use href="#i-phone"/></svg>Call now</a>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <div class="portrait reveal">
+          <svg class="portrait-badge" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
+            <circle cx="60" cy="60" r="58" fill="#c4f04a"/>
+            <text font-family="Archivo, sans-serif" font-weight="800" font-size="11.5" letter-spacing="3.2" fill="#0d2418"><textPath href="#circ">DETROIT BORN • DETROIT BUILT • </textPath></text>
+            <path d="M44 74c8 1.5 21-4 23-21-10 0-21 5-23 21Zm0 0c4-7 8-10 15-14" fill="#0d2418" stroke="#0d2418" stroke-width="2" stroke-linecap="round" transform="translate(6 -4)"/>
+          </svg>
+          <h3>Juan Walker Jr.</h3>
+          <p>Founder · Michigan Licensed Residential Builder</p>
+        </div>
+
+        <div class="about-copy reveal">
+          <span class="eyebrow">Our story</span>
+          <h2>Started at 16.<br>Still hands-on.</h2>
+          <p>Founded by Detroit native Juan Walker Jr., Sway Services was built on hard work, determination, and a commitment to quality service. Juan began his entrepreneurial journey at just 16 years old, growing his business from humble beginnings into a trusted provider of residential and commercial property services throughout Metro Detroit.</p>
+          <p>As a Michigan Licensed Residential Builder, Juan leads Sway Services with a hands-on approach, emphasizing professionalism, reliability, and customer satisfaction. With thousands of projects completed, Sway Services continues to expand its capabilities in property maintenance, construction, and exterior improvements.</p>
+          <div class="mission">
+            <span>Our mission</span>
+            <p>Deliver quality workmanship, build lasting relationships, and get the job done the Sway Way.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>16</strong><span>Age Juan started the business</span></div>
+            <div class="stat"><strong>1,000s</strong><span>Projects completed</span></div>
+            <div class="stat"><strong>313</strong><span>Detroit born &amp; based</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Process ===== -->
+    <section class="section process on-dark">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">How it works</span>
+            <h2>The Sway Way<br>in 3 steps</h2>
+          </div>
+          <p>No runaround, no guessing. Clear communication from the first call to the final walkthrough.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-ic"><svg><use href="#i-phone"/></svg></div>
+            <h3>Reach out</h3>
+            <p>Call, text, or send the form below. Tell us what your property needs, big or small.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step-ic"><svg><use href="#i-clip"/></svg></div>
+            <h3>Get your estimate</h3>
+            <p>We look at the job and give you a straightforward, fair price before any work starts.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step-ic"><svg><use href="#i-check"/></svg></div>
+            <h3>Done right</h3>
+            <p>Our crew shows up, works clean, and doesn't call it finished until you're satisfied.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Customer testimonials</span>
+            <h2>Trusted across<br>Metro Detroit</h2>
+          </div>
+          <p>Homeowners, property owners and commercial managers count on Sway Services all year long.</p>
+        </div>
+        <div class="review-grid">
+          <figure class="review reveal" style="margin:0">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote>Sway Services did an excellent job transforming our property. The crew was professional, efficient, and paid attention to every detail. We couldn't be happier with the results!</blockquote>
+            <figcaption class="who"><span class="avatar">M</span><div><strong>Michael R.</strong><span>Residential Customer</span></div></figcaption>
+          </figure>
+          <figure class="review reveal" style="margin:0">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote>Reliable service and great communication. Sway Services consistently keeps our property safe and accessible throughout the winter. It's a company we can depend on.</blockquote>
+            <figcaption class="who"><span class="avatar">J</span><div><strong>Jennifer T.</strong><span>Commercial Property Manager</span></div></figcaption>
+          </figure>
+          <figure class="review reveal" style="margin:0">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="stars" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote>From start to finish, Sway Services made the entire process easy. Quality workmanship, fair pricing, and a team that takes pride in their work. Highly recommend!</blockquote>
+            <figcaption class="who"><span class="avatar">D</span><div><strong>David L.</strong><span>Property Owner</span></div></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <div class="contact-info on-dark">
+            <span class="eyebrow">Free estimates</span>
+            <h2>Let's get your property right.</h2>
+            <p>Residential or commercial, one-time project or ongoing service. Reach out and we'll get back to you fast.</p>
+            <ul class="info-list">
+              <li><span class="ic"><svg><use href="#i-phone"/></svg></span><div><small>Call or text</small><a href="tel:+13137428903">313-742-8903</a></div></li>
+              <li><span class="ic"><svg><use href="#i-mail"/></svg></span><div><small>Email</small><a href="mailto:swayservicesss@gmail.com">swayservicesss@gmail.com</a></div></li>
+              <li><span class="ic"><svg><use href="#i-pin"/></svg></span><div><small>Based in</small><b>12609 Stout St, Detroit, MI</b></div></li>
+              <li><span class="ic"><svg><use href="#i-clock"/></svg></span><div><small>Service area</small><b>Detroit &amp; all of Metro Detroit</b></div></li>
+            </ul>
+          </div>
+
+          <form class="form" id="quoteForm" action="https://formsubmit.co/swayservicesss@gmail.com" method="POST">
+            <h3>Request a free estimate</h3>
+            <p>Tell us a little about the job. Prefer to talk? Call <a href="tel:+13137428903">313-742-8903</a>.</p>
+
+            <input type="hidden" name="_subject" value="New estimate request from swayservices website">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="grid-2">
+              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+              <div class="field">
+                <label for="f-service">Service needed</label>
+                <select id="f-service" name="service" required>
+                  <option value="" disabled selected>Choose a service</option>
+                  <option>Landscaping &amp; Grounds Maintenance</option>
+                  <option>Snow &amp; Ice Management</option>
+                  <option>Concrete &amp; Masonry</option>
+                  <option>Exterior Construction &amp; Improvements</option>
+                  <option>General Contracting &amp; Property Maintenance</option>
+                  <option>Emergency / Same-Day Service</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+            </div>
+            <fieldset class="field">
+              <legend>Property type</legend>
+              <div class="toggle">
+                <label><input type="radio" name="property_type" value="Residential" checked><span>Residential</span></label>
+                <label><input type="radio" name="property_type" value="Commercial"><span>Commercial</span></label>
+              </div>
+            </fieldset>
+            <div class="field"><label for="f-address">Property address or city</label><input id="f-address" name="address" type="text" autocomplete="street-address"></div>
+            <div class="field"><label for="f-msg">Project details</label><textarea id="f-msg" name="message" placeholder="What do you need done? Any timing we should know about?"></textarea></div>
+            <button class="btn btn-dark" type="submit">Send my request <svg><use href="#i-arrow"/></svg></button>
+            <p class="form-note">We'll reach out by phone or email. Need help today? Call us directly.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div>
+        <a href="#top" class="logo" aria-label="Sway Services home">
+          <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#c4f04a"/>
+            <path d="M17 46c11 2 28-5 30-27-13 0-28 7-30 27Z" fill="#0d2418"/>
+            <path d="M17 46c5-9 11-14 20-18" fill="none" stroke="#c4f04a" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text"><strong>SWAY</strong><span>Services</span></span>
+        </a>
+        <p class="tag">Residential and commercial property services across Metro Detroit. Michigan Licensed Residential Builder. Same-day &amp; emergency service available.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Landscaping &amp; Grounds</a></li>
+          <li><a href="#services">Snow &amp; Ice Management</a></li>
+          <li><a href="#services">Concrete &amp; Masonry</a></li>
+          <li><a href="#services">Exterior Construction</a></li>
+          <li><a href="#services">General Contracting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+13137428903">313-742-8903</a></li>
+          <li><a href="mailto:swayservicesss@gmail.com">swayservicesss@gmail.com</a></li>
+          <li>12609 Stout St, Detroit, MI</li>
+          <li>Serving Metro Detroit</li>
+        </ul>
+      </div>
+      <div class="sway-big" aria-hidden="true">Sway Way</div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> Sway Services. All rights reserved.</span>
+        <span>Detroit, Michigan</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile call bar -->
+  <div class="callbar">
+    <a class="btn btn-lime" href="tel:+13137428903"><svg><use href="#i-phone"/></svg>Call now</a>
+    <a class="btn btn-ghost" href="#contact">Free estimate</a>
+  </div>
+
+  <script>
+    document.body.classList.remove('no-js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header background on scroll
+    const header = document.querySelector('.header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      header.classList.add('scrolled');
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el, i) => {
+        el.style.transitionDelay = (el.parentElement.querySelectorAll(':scope > .reveal').length > 1
+          ? [...el.parentElement.children].indexOf(el) * 80 : 0) + 'ms';
+        io.observe(el);
+      });
+    } else {
+      revealEls.forEach(el => el.classList.add('in'));
+    }
+
+    // Form: submit in the background so visitors stay on the page
+    const form = document.getElementById('quoteForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (!res.ok) throw new Error('Request failed');
+        form.innerHTML = '<h3>Thanks, we got it!</h3><p>Someone from Sway Services will reach out shortly. Need help right away? Call <a href="tel:+13137428903">313-742-8903</a>.</p>';
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = original;
+        alert('Sorry, something went wrong sending your request. Please call us at 313-742-8903.');
+      }
+    });
+  </script>
+</body>
+</html>
