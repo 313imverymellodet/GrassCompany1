@@ -231,7 +231,7 @@
 
     /* Work / gallery */
     .work { background: var(--cream); }
-    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .ba { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
     .shot { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--forest-2); }
     .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
     .shot:hover img { transform: scale(1.04); }
@@ -242,6 +242,8 @@
       background: var(--paper); color: var(--forest);
     }
     .tag-label.after { background: var(--lime); }
+    .tag-label.spring { background: #e4f5c8; }
+    .tag-label.winter { background: #cfe8ff; color: #1b3a52; }
     .ba-caption {
       grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
       padding: 18px 22px; background: var(--forest); color: #fff; border-radius: var(--radius);
@@ -438,6 +440,7 @@
       .svc, .svc:nth-child(4), .svc:nth-child(5) { grid-column: span 1; }
       .svc:nth-child(5) { grid-column: 1 / -1; }
       .steps, .review-grid { grid-template-columns: 1fr; }
+      .ba { grid-template-columns: 1fr 1fr; }
       .gallery { grid-template-columns: 1fr 1fr; }
       .gallery .shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
       .review:nth-child(2) { transform: none; }
@@ -713,9 +716,17 @@
             <img src="images/after-brick-colonial.webp" width="818" height="1158" loading="lazy" alt="The same brick colonial after service, with a freshly cut lawn and a clean walkway">
             <span class="tag-label after">After</span>
           </figure>
+          <figure class="shot">
+            <img src="images/spring-edged-lawns.webp" width="1400" height="1083" loading="lazy" alt="Row of brick homes in spring with freshly cut lawns and crisp edges along the sidewalks">
+            <span class="tag-label spring">Spring</span>
+          </figure>
+          <figure class="shot">
+            <img src="images/winter-cleared-driveway.webp" width="756" height="1046" loading="lazy" alt="Long driveway cleared of snow and salted in winter, with snow banked along the edges">
+            <span class="tag-label winter">Winter</span>
+          </figure>
           <div class="ba-caption">
-            <strong>Overgrown to curb&#8209;ready</strong>
-            <span>Same house, before and after. That's the Sway Way.</span>
+            <strong>Curb&#8209;ready all year</strong>
+            <span>From overgrown to clean, spring edging to winter snow removal. That's the Sway Way.</span>
           </div>
         </div>
 
