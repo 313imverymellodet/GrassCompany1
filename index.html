@@ -229,6 +229,32 @@
     .svc.snow { background: linear-gradient(180deg, #fff 0%, var(--snow) 100%); }
     .svc.snow .svc-icon { background: #1b3a52; color: #cfe8ff; }
 
+    /* Work / gallery */
+    .work { background: var(--cream); }
+    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .shot { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--forest-2); }
+    .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+    .shot:hover img { transform: scale(1.04); }
+    .ba .shot { aspect-ratio: 4 / 5; }
+    .tag-label {
+      position: absolute; top: 16px; left: 16px; padding: 7px 14px; border-radius: 999px;
+      font-family: var(--display); font-stretch: 110%; font-weight: 800; font-size: 13px; letter-spacing: .14em;
+      background: var(--paper); color: var(--forest);
+    }
+    .tag-label.after { background: var(--lime); }
+    .ba-caption {
+      grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+      padding: 18px 22px; background: var(--forest); color: #fff; border-radius: var(--radius);
+    }
+    .ba-caption strong { font-family: var(--display); font-stretch: 85%; font-size: 24px; text-transform: uppercase; }
+    .ba-caption span { color: rgba(255,255,255,.72); font-size: 15px; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery .shot { aspect-ratio: 4 / 3; }
+    .gallery figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px;
+      background: linear-gradient(transparent, rgba(9,26,17,.85)); color: #fff; font-weight: 600; font-size: 15px;
+    }
+
     /* Emergency band */
     .emergency { background: var(--forest); color: #fff; overflow: hidden; }
     .emergency .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; padding: 54px 0; }
@@ -412,6 +438,8 @@
       .svc, .svc:nth-child(4), .svc:nth-child(5) { grid-column: span 1; }
       .svc:nth-child(5) { grid-column: 1 / -1; }
       .steps, .review-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery .shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
       .review:nth-child(2) { transform: none; }
       .emergency .wrap { grid-template-columns: auto 1fr; }
       .emergency .btn { grid-column: 1 / -1; justify-self: start; }
@@ -431,6 +459,10 @@
       .float-card strong { font-size: 18px; }
       .svc-grid { grid-template-columns: 1fr; }
       .svc:nth-child(5) { grid-column: auto; }
+      .ba { gap: 10px; }
+      .tag-label { top: 10px; left: 10px; font-size: 11px; padding: 5px 10px; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery .shot, .gallery .shot:first-child { aspect-ratio: 4 / 3; }
       .stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
       .stat strong { font-size: 38px; }
       .stat span { font-size: 12.5px; }
@@ -483,6 +515,7 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
         <a class="link" href="#services">Services</a>
+        <a class="link" href="#work">Our Work</a>
         <a class="link" href="#about">About</a>
         <a class="link" href="#reviews">Reviews</a>
         <a class="link" href="#contact">Contact</a>
@@ -656,6 +689,49 @@
             <p>One reliable point of contact for ongoing upkeep and projects on homes, rentals and commercial sites.</p>
             <ul><li>Ongoing upkeep</li><li>Project management</li><li>Rental &amp; commercial</li></ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Our work ===== -->
+    <section class="section work" id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Our work</span>
+            <h2>Real Detroit yards.<br>Real results.</h2>
+          </div>
+          <p>Every property gets the same attention to detail, whether it's a one-time cleanup or weekly maintenance.</p>
+        </div>
+
+        <div class="ba reveal">
+          <figure class="shot">
+            <img src="images/before-brick-colonial.webp" width="834" height="1164" loading="lazy" alt="Brick colonial home before service, with an overgrown front lawn covered in leaves and tall grass">
+            <span class="tag-label">Before</span>
+          </figure>
+          <figure class="shot">
+            <img src="images/after-brick-colonial.webp" width="818" height="1158" loading="lazy" alt="The same brick colonial after service, with a freshly cut lawn and a clean walkway">
+            <span class="tag-label after">After</span>
+          </figure>
+          <div class="ba-caption">
+            <strong>Overgrown to curb&#8209;ready</strong>
+            <span>Same house, before and after. That's the Sway Way.</span>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure class="shot reveal">
+            <img src="images/lawn-cape-cod.webp" width="1400" height="948" loading="lazy" alt="White Cape Cod style home with a freshly mowed front lawn and trimmed shrubs">
+            <figcaption>Fresh cut &amp; trimmed shrubs</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="images/lawn-brick-duplex.webp" width="1282" height="1210" loading="lazy" alt="Brick homes with neatly mowed lawns and clean walkways">
+            <figcaption>Residential lawn care</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="images/lawn-brick-two-story.webp" width="1400" height="1001" loading="lazy" alt="Two-story brick home with a mowed lawn and a tree in front">
+            <figcaption>Grounds maintenance</figcaption>
+          </figure>
         </div>
       </div>
     </section>
