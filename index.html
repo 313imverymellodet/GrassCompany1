@@ -174,7 +174,17 @@
       box-shadow: 0 40px 80px -20px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
       transform: rotate(1.5deg);
     }
-    .scene svg { width: 100%; height: 100%; }
+    .scene { position: relative; background: var(--forest-2); }
+    .scene-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .scene-left { clip-path: polygon(0 0, 63.5% 0, 36.5% 100%, 0 100%); object-position: 30% 50%; }
+    .scene-right { left: 36%; width: 64%; clip-path: polygon(43% 0, 100% 0, 100% 100%, 0.8% 100%); object-position: 0% 50%; }
+    .scene-divider { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .scene-label {
+      position: absolute; padding: 7px 14px; border-radius: 999px; background: var(--forest);
+      font-family: var(--display); font-stretch: 110%; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .scene-label.spring { top: 22px; left: 22px; color: var(--lime); }
+    .scene-label.winter { right: 22px; bottom: 22px; color: #cfe8ff; }
     .float-card {
       position: absolute; background: var(--paper); color: var(--ink);
       border-radius: 16px; padding: 16px 18px; box-shadow: 0 20px 40px -12px rgba(0,0,0,.45);
@@ -553,77 +563,14 @@
 
         <div class="hero-art reveal">
           <div class="scene">
-            <svg viewBox="0 0 520 600" role="img" aria-label="Illustration of a Detroit property shown half in summer with a striped lawn and half in winter covered in snow">
-              <defs>
-                <linearGradient id="skyS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4e8"/><stop offset="1" stop-color="#d9f0f7"/></linearGradient>
-                <linearGradient id="skyW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4f66"/><stop offset="1" stop-color="#9fb3c6"/></linearGradient>
-                <clipPath id="summer"><polygon points="0,0 330,0 190,600 0,600"/></clipPath>
-                <clipPath id="winter"><polygon points="330,0 520,0 520,600 190,600"/></clipPath>
-                <g id="skyline">
-                  <path d="M0 330V292h22v-18h16v18h14v-30h20v30h10v-46h8v-10h10v10h8v46h12v-22h18v22h10v-60h26v60h6v-38h14v38h8v-74l12-14 12 14v74h10v-34h16v34h12v-20h14v20h10v-52h8v-26h4v26h8v52h14v-28h20v28h12V258h18l10-12h20l10 12h18v72h8v-24h18v24h12v-40h24v40h10v-18h14v18h10v-30h18v30h22v0Z"/>
-                </g>
-                <g id="house">
-                  <path d="M0 74 70 18l70 56v66H0Z"/>
-                </g>
-              </defs>
-
-              <!-- SUMMER -->
-              <g clip-path="url(#summer)">
-                <rect width="520" height="330" fill="url(#skyS)"/>
-                <circle cx="84" cy="92" r="40" fill="#ffe27a"/>
-                <circle cx="84" cy="92" r="58" fill="#ffe27a" opacity=".25"/>
-                <use href="#skyline" fill="#5f8fa8" opacity=".55"/>
-                <rect y="330" width="520" height="270" fill="#4e9d43"/>
-                <path fill="#3e8a37" d="M-700 600h120l655.2-270H48.8ZM-460 600h120l468-270h-26.4ZM-220 600h120l280.8-270h-26.4ZM20 600h120l93.6-270h-26.4ZM260 600h120l-93.6-270H260ZM500 600h120L339.2 330h-26.4ZM740 600h120L392 330h-26.4ZM980 600h120L444.8 330h-26.4ZM1220 600h120L497.6 330h-26.4Z"/>
-                <!-- house -->
-                <g transform="translate(150 196)">
-                  <use href="#house" fill="#f3ead8"/>
-                  <path d="M-10 78 70 12l80 66" fill="none" stroke="#2c4a36" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
-                  <rect x="56" y="92" width="28" height="48" fill="#2c4a36"/>
-                  <rect x="18" y="88" width="24" height="22" fill="#9ed2ea"/>
-                  <rect x="98" y="88" width="24" height="22" fill="#9ed2ea"/>
-                </g>
-                <!-- shrubs -->
-                <g fill="#2f7a2c"><circle cx="138" cy="336" r="16"/><circle cx="160" cy="340" r="12"/><circle cx="300" cy="338" r="14"/></g>
-                <!-- walkway -->
-                <path d="M210 336h20l40 264h-100Z" fill="#d8d2c4"/>
-                <path d="M190 470h68M180 540h86" stroke="#bfb8a8" stroke-width="3"/>
-              </g>
-
-              <!-- WINTER -->
-              <g clip-path="url(#winter)">
-                <rect width="520" height="330" fill="url(#skyW)"/>
-                <use href="#skyline" fill="#2b3c4f" opacity=".7"/>
-                <rect y="330" width="520" height="270" fill="#eef4f8"/>
-                <path fill="#dde8f0" d="M-700 600h120l655.2-270H48.8ZM-460 600h120l468-270h-26.4ZM-220 600h120l280.8-270h-26.4ZM20 600h120l93.6-270h-26.4ZM260 600h120l-93.6-270H260ZM500 600h120L339.2 330h-26.4ZM740 600h120L392 330h-26.4ZM980 600h120L444.8 330h-26.4ZM1220 600h120L497.6 330h-26.4Z"/>
-                <g transform="translate(150 196)">
-                  <use href="#house" fill="#e6e1d6"/>
-                  <path d="M-10 78 70 12l80 66" fill="none" stroke="#ffffff" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>
-                  <rect x="56" y="92" width="28" height="48" fill="#24384a"/>
-                  <rect x="98" y="88" width="24" height="22" fill="#ffd27a"/>
-                </g>
-                <g fill="#fff"><ellipse cx="300" cy="336" rx="18" ry="10"/></g>
-                <!-- cleared, salted path -->
-                <path d="M210 336h20l40 264h-100Z" fill="#b7c2c9"/>
-                <g fill="#ffffff" opacity=".8"><circle cx="232" cy="420" r="2"/><circle cx="245" cy="470" r="2"/><circle cx="220" cy="510" r="2"/><circle cx="252" cy="560" r="2.5"/><circle cx="214" cy="575" r="2"/></g>
-                <!-- snowflakes -->
-                <g fill="#fff" opacity=".9">
-                  <circle cx="380" cy="60" r="3"/><circle cx="440" cy="120" r="2.5"/><circle cx="480" cy="40" r="2"/>
-                  <circle cx="350" cy="170" r="2.5"/><circle cx="420" cy="210" r="3"/><circle cx="495" cy="190" r="2"/>
-                  <circle cx="470" cy="270" r="2.5"/><circle cx="300" cy="90" r="2"/><circle cx="400" cy="290" r="2"/>
-                </g>
-              </g>
-
-              <!-- divider -->
-              <path d="M330 0 190 600" stroke="#0d2418" stroke-width="6"/>
-              <path d="M330 0 190 600" stroke="#c4f04a" stroke-width="2"/>
-              <g font-family="Archivo, sans-serif" font-weight="800" font-size="13" letter-spacing="2">
-                <rect x="22" y="22" width="92" height="28" rx="14" fill="#0d2418"/>
-                <text x="68" y="41" text-anchor="middle" fill="#c4f04a">SUMMER</text>
-                <rect x="406" y="22" width="92" height="28" rx="14" fill="#0d2418"/>
-                <text x="452" y="41" text-anchor="middle" fill="#cfe8ff">WINTER</text>
-              </g>
+            <img class="scene-img scene-left" src="images/spring-edged-lawns.webp" width="1400" height="1083" fetchpriority="high" alt="Freshly cut and edged front lawns on a Detroit street in spring">
+            <img class="scene-img scene-right" src="images/winter-cleared-driveway.webp" width="756" height="1046" fetchpriority="high" alt="Driveway cleared of snow and salted in winter">
+            <svg class="scene-divider" viewBox="0 0 520 600" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M330 0 190 600" stroke="#0d2418" stroke-width="7" vector-effect="non-scaling-stroke"/>
+              <path d="M330 0 190 600" stroke="#c4f04a" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
             </svg>
+            <span class="scene-label spring">Spring</span>
+            <span class="scene-label winter">Winter</span>
           </div>
           <div class="float-card fc-1">
             <div class="ic"><svg><use href="#i-check"/></svg></div>
