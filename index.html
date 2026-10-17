@@ -266,6 +266,9 @@
     }
     .ba-caption strong { font-family: var(--display); font-stretch: 85%; font-size: 24px; text-transform: uppercase; }
     .ba-caption span { color: rgba(255,255,255,.72); font-size: 15px; }
+    .ba.ba-build { grid-template-columns: 1fr 1fr; margin-top: 28px; }
+    .ba.ba-build .shot { aspect-ratio: 4 / 3; }
+    .ba.ba-build .shot img { object-position: 50% 62%; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .gallery .shot { aspect-ratio: 4 / 3; }
     .gallery figcaption {
@@ -456,7 +459,6 @@
       .steps, .review-grid { grid-template-columns: 1fr; }
       .ba { grid-template-columns: 1fr 1fr; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .gallery .shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
       .review:nth-child(2) { transform: none; }
       .emergency .wrap { grid-template-columns: auto 1fr; }
       .emergency .btn { grid-column: 1 / -1; justify-self: start; }
@@ -478,8 +480,11 @@
       .svc:nth-child(5) { grid-column: auto; }
       .ba { gap: 10px; }
       .tag-label { top: 10px; left: 10px; font-size: 11px; padding: 5px 10px; }
-      .gallery { grid-template-columns: 1fr; }
-      .gallery .shot, .gallery .shot:first-child { aspect-ratio: 4 / 3; }
+      .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery .shot { aspect-ratio: 1 / 1; }
+      .gallery figcaption { font-size: 13px; padding: 30px 10px 10px; }
+      .ba.ba-build { gap: 10px; }
+      .ba.ba-build .shot { aspect-ratio: 4 / 5; }
       .stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
       .stat strong { font-size: 38px; }
       .stat span { font-size: 12.5px; }
@@ -676,7 +681,34 @@
           </div>
         </div>
 
+        <div class="ba ba-build reveal">
+          <figure class="shot">
+            <img src="images/deck-before.webp" width="825" height="1100" loading="lazy" alt="Back of a two-story home before construction, with bare dirt and no deck">
+            <span class="tag-label">Before</span>
+          </figure>
+          <figure class="shot">
+            <img src="images/deck-after.webp" width="825" height="1100" loading="lazy" alt="The same home after construction, with a new elevated deck, stairs and a concrete patio">
+            <span class="tag-label after">After</span>
+          </figure>
+          <div class="ba-caption">
+            <strong>Backyard deck &amp; patio build</strong>
+            <span>A new elevated deck, stairs and concrete patio, built from the ground up.</span>
+          </div>
+        </div>
+
         <div class="gallery">
+          <figure class="shot reveal">
+            <img src="images/lawn-stripes-mower.webp" width="1100" height="825" loading="lazy" alt="Large lawn with fresh mowing stripes and a riding mower at work">
+            <figcaption>Striped lawn mowing</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="images/concrete-walkway.webp" width="825" height="1100" loading="lazy" alt="Newly poured concrete walkway between two brick homes">
+            <figcaption>New concrete walkway</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="images/lawn-stripes.webp" width="1100" height="825" loading="lazy" alt="Wide backyard lawn with crisp mowing stripes and trees in the background">
+            <figcaption>Clean, even mowing stripes</figcaption>
+          </figure>
           <figure class="shot reveal">
             <img src="images/lawn-cape-cod.webp" width="1400" height="948" loading="lazy" alt="White Cape Cod style home with a freshly mowed front lawn and trimmed shrubs">
             <figcaption>Fresh cut &amp; trimmed shrubs</figcaption>
