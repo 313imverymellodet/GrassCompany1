@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sway Services | Landscaping, Snow Removal &amp; Concrete in Metro Detroit</title>
-  <meta name="description" content="Sway Services is a Detroit-based, licensed &amp; insured Michigan Residential Builder offering landscaping, snow &amp; ice management, concrete &amp; masonry, exterior improvements and property maintenance in Detroit, Southfield, Royal Oak and Metro Detroit. 24/7 emergency service. Call 313-742-8903.">
+  <meta name="description" content="Sway Services is a Detroit-based, licensed &amp; insured Michigan Residential Builder serving commercial properties and homeowners with landscaping, snow &amp; ice management, concrete &amp; masonry, exterior improvements and property maintenance in Detroit, Southfield, Royal Oak and Metro Detroit. 24/7 emergency service. Call 313-742-8903.">
   <meta name="theme-color" content="#1e130c">
   <link rel="canonical" href="https://swayservices.com/">
 
@@ -42,6 +42,13 @@
       { "@type": "Place", "name": "Metro Detroit, Michigan" }
     ],
     "slogan": "Get the job done the Sway Way.",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:00",
+      "closes": "17:00"
+    }],
+    "sameAs": ["https://www.instagram.com/swayservices", "https://www.facebook.com/share/1EoxZ7NHXe/"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Property Services",
@@ -270,6 +277,8 @@
     .ba.ba-build .shot { aspect-ratio: 4 / 3; }
     .ba.ba-build .shot img { object-position: 50% 62%; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery .shot:first-child { grid-column: span 2; aspect-ratio: auto; }
+    .gallery .shot:first-child img { position: absolute; inset: 0; }
     .gallery .shot { aspect-ratio: 4 / 3; }
     .gallery figcaption {
       position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px;
@@ -405,6 +414,11 @@
     .hp { position: absolute; left: -9999px; }
 
     /* Footer */
+    .social { display: flex; gap: 10px; margin-top: 20px; }
+    .social a { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(227,154,91,.12); color: var(--copper); transition: background .2s, color .2s; }
+    .social a:hover { background: var(--copper); color: var(--brown); }
+    .social svg { width: 20px; height: 20px; }
+    .contact-info .social { position: relative; z-index: 1; margin-top: 28px; }
     .footer { overflow: hidden; background: #130b06; color: rgba(255,255,255,.7); padding: 70px 0 120px; }
     .footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
     .footer h4 { font-family: var(--display); font-stretch: 110%; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--copper); margin: 0 0 16px; }
@@ -459,6 +473,7 @@
       .steps, .review-grid { grid-template-columns: 1fr; }
       .ba { grid-template-columns: 1fr 1fr; }
       .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery .shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
       .review:nth-child(2) { transform: none; }
       .emergency .wrap { grid-template-columns: auto 1fr; }
       .emergency .btn { grid-column: 1 / -1; justify-self: start; }
@@ -482,6 +497,7 @@
       .tag-label { top: 10px; left: 10px; font-size: 11px; padding: 5px 10px; }
       .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
       .gallery .shot { aspect-ratio: 1 / 1; }
+      .gallery .shot:first-child { aspect-ratio: 16 / 10; }
       .gallery figcaption { font-size: 13px; padding: 30px 10px 10px; }
       .ba.ba-build { gap: 10px; }
       .ba.ba-build .shot { aspect-ratio: 4 / 5; }
@@ -519,6 +535,8 @@
       <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></g></symbol>
       <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
       <symbol id="i-clip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3h6v3H9zM9 11h6M9 15h4"/></g></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></g></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.2H8v3.4h2.6V21H14v-9.1h2.7l.4-3.4z"/></symbol>
       <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
     </defs>
   </svg>
@@ -549,18 +567,18 @@
     <section class="hero on-dark">
       <div class="wrap">
         <div class="hero-copy">
-          <span class="eyebrow">Metro Detroit Property Services</span>
+          <span class="eyebrow">Commercial Property Services · Metro Detroit</span>
           <h1>Built right.<br>Kept right.
             <span class="accent">The <span class="way">Sway Way.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14C60 4 160 2 297 10" fill="none" stroke="#e39a5b" stroke-width="5" stroke-linecap="round" opacity=".55"/></svg></span></span>
           </h1>
-          <p class="hero-lede">Landscaping, snow &amp; ice, concrete, and exterior improvements for Detroit homes and businesses, done by a Michigan Licensed Residential Builder who started this company at 16.</p>
+          <p class="hero-lede">Grounds maintenance, snow &amp; ice management, concrete and exterior construction for commercial properties, property managers and homeowners across Metro Detroit. Led by a Michigan Licensed Residential Builder who started this company at 16.</p>
           <div class="hero-ctas">
             <a class="btn btn-copper" href="#contact">Get a free estimate <svg><use href="#i-arrow"/></svg></a>
             <a class="btn btn-ghost" href="tel:+13137428903"><svg><use href="#i-phone"/></svg>Call 313-742-8903</a>
           </div>
           <ul class="badges">
             <li><svg><use href="#i-shield"/></svg>Licensed &amp; Insured</li>
-            <li><svg><use href="#i-home"/></svg>Residential &amp; Commercial</li>
+            <li><svg><use href="#i-home"/></svg>Commercial &amp; Residential</li>
             <li><svg><use href="#i-bolt"/></svg>24/7 Emergency Service</li>
           </ul>
         </div>
@@ -604,7 +622,7 @@
             <span class="eyebrow">What we do</span>
             <h2>One crew.<br>Every season.</h2>
           </div>
-          <p>From spring cleanups to midnight snow pushes, Sway Services handles the outside of your property so you don't have to juggle five different contractors.</p>
+          <p>From grounds maintenance to midnight snow pushes, Sway Services handles the outside of your commercial property so you don't have to juggle five different contractors.</p>
         </div>
 
         <div class="svc-grid">
@@ -613,14 +631,14 @@
             <div class="svc-icon"><svg><use href="#i-leaf"/></svg></div>
             <h3>Landscaping &amp; Grounds Maintenance</h3>
             <p>Sharp, healthy, curb-ready grounds with routine care and seasonal upgrades.</p>
-            <ul><li>Lawn care</li><li>Trimming</li><li>Mulch &amp; beds</li><li>Cleanups</li></ul>
+            <ul><li>Commercial grounds</li><li>Lawn care</li><li>Trimming</li><li>Mulch &amp; beds</li><li>Cleanups</li></ul>
           </article>
           <article class="svc snow reveal">
             <span class="svc-num">02</span>
             <div class="svc-icon"><svg><use href="#i-snow"/></svg></div>
             <h3>Snow &amp; Ice Management</h3>
             <p>Keeping driveways, lots and walkways safe and open through Michigan winters.</p>
-            <ul><li>Plowing</li><li>Shoveling</li><li>Salting</li><li>De-icing</li></ul>
+            <ul><li>Parking lots</li><li>Plowing</li><li>Shoveling</li><li>Salting</li><li>De-icing</li></ul>
           </article>
           <article class="svc reveal">
             <span class="svc-num">03</span>
@@ -699,7 +717,7 @@
         <div class="gallery">
           <figure class="shot reveal">
             <img src="images/lawn-stripes-mower.webp" width="1100" height="825" loading="lazy" alt="Large lawn with fresh mowing stripes and a riding mower at work">
-            <figcaption>Striped lawn mowing</figcaption>
+            <figcaption>Commercial grounds mowing</figcaption>
           </figure>
           <figure class="shot reveal">
             <img src="images/concrete-walkway.webp" width="825" height="1100" loading="lazy" alt="Newly poured concrete walkway between two brick homes">
@@ -712,10 +730,6 @@
           <figure class="shot reveal">
             <img src="images/lawn-cape-cod.webp" width="1400" height="948" loading="lazy" alt="White Cape Cod style home with a freshly mowed front lawn and trimmed shrubs">
             <figcaption>Fresh cut &amp; trimmed shrubs</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <img src="images/lawn-brick-duplex.webp" width="1282" height="1210" loading="lazy" alt="Brick homes with neatly mowed lawns and clean walkways">
-            <figcaption>Residential lawn care</figcaption>
           </figure>
           <figure class="shot reveal">
             <img src="images/lawn-brick-two-story.webp" width="1400" height="1001" loading="lazy" alt="Two-story brick home with a mowed lawn and a tree in front">
@@ -840,14 +854,18 @@
           <div class="contact-info on-dark">
             <span class="eyebrow">Free estimates</span>
             <h2>Let's get your property right.</h2>
-            <p>Residential or commercial, one-time project or ongoing service. Reach out and we'll get back to you fast.</p>
+            <p>Commercial or residential, one-time project or ongoing service. Reach out and we'll get back to you fast.</p>
             <ul class="info-list">
               <li><span class="ic"><svg><use href="#i-phone"/></svg></span><div><small>Call or text</small><a href="tel:+13137428903">313-742-8903</a></div></li>
               <li><span class="ic"><svg><use href="#i-mail"/></svg></span><div><small>Email</small><a href="mailto:swayservicesss@gmail.com">swayservicesss@gmail.com</a></div></li>
               <li><span class="ic"><svg><use href="#i-pin"/></svg></span><div><small>Based in</small><b>Detroit, MI</b></div></li>
-              <li><span class="ic"><svg><use href="#i-clock"/></svg></span><div><small>Hours</small><b>8am – 5pm · 24/7 emergency service</b></div></li>
+              <li><span class="ic"><svg><use href="#i-clock"/></svg></span><div><small>Hours</small><b>Mon – Sat, 8am – 5pm · 24/7 emergency service</b></div></li>
               <li><span class="ic"><svg><use href="#i-home"/></svg></span><div><small>Service area</small><b>Detroit, Southfield, Royal Oak &amp; Metro Detroit</b></div></li>
             </ul>
+            <div class="social">
+              <a href="https://www.instagram.com/swayservices" target="_blank" rel="noopener" aria-label="Sway Services on Instagram"><svg><use href="#i-instagram"/></svg></a>
+              <a href="https://www.facebook.com/share/1EoxZ7NHXe/" target="_blank" rel="noopener" aria-label="Sway Services on Facebook"><svg><use href="#i-facebook"/></svg></a>
+            </div>
           </div>
 
           <form class="form" id="quoteForm" action="https://formsubmit.co/swayservicesss@gmail.com" method="POST">
@@ -882,8 +900,8 @@
             <fieldset class="field">
               <legend>Property type</legend>
               <div class="toggle">
-                <label><input type="radio" name="property_type" value="Residential" checked><span>Residential</span></label>
-                <label><input type="radio" name="property_type" value="Commercial"><span>Commercial</span></label>
+                <label><input type="radio" name="property_type" value="Commercial" checked><span>Commercial</span></label>
+                <label><input type="radio" name="property_type" value="Residential"><span>Residential</span></label>
               </div>
             </fieldset>
             <div class="field"><label for="f-address">Property address or city</label><input id="f-address" name="address" type="text" autocomplete="street-address"></div>
@@ -904,7 +922,11 @@
           <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="-6 -2 98 84" aria-hidden="true"><defs><mask id="ftr-m"><g transform="skewX(-10) translate(14 0)"><path d="M0 0H33L52 7.8V25.8H64L82.4 33.3V79.8H30.5V53.8H0Z" fill="#fff"/><g fill="none" stroke="#000" stroke-width="3"><path d="M54 17.3H31V9.3"/><path d="M-2 26.8H32V43.8"/><path d="M84 42.3H61V34.8"/><path d="M29.5 51.6H63.5V70.3"/></g></g></mask><linearGradient id="ftr-g" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#f4bf7e"/><stop offset=".5" stop-color="#d98a4b"/><stop offset="1" stop-color="#a65a2a"/></linearGradient><pattern id="ftr-s" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><rect width="5" height="1.1" fill="#2a160a" opacity=".22"/></pattern></defs><rect x="-6" y="-2" width="98" height="84" fill="url(#ftr-g)" mask="url(#ftr-m)"/><rect x="-6" y="-2" width="98" height="84" fill="url(#ftr-s)" mask="url(#ftr-m)"/></svg>
           <span class="logo-text"><strong>SWAY</strong><span>Services</span></span>
         </a>
-        <p class="tag">Residential and commercial property services in Detroit, Southfield, Royal Oak and across Metro Detroit. Licensed &amp; insured. Michigan Residential Builder License #242400488.</p>
+        <p class="tag">Commercial and residential property services in Detroit, Southfield, Royal Oak and across Metro Detroit. Licensed &amp; insured. Michigan Residential Builder License #242400488.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/swayservices" target="_blank" rel="noopener" aria-label="Sway Services on Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a href="https://www.facebook.com/share/1EoxZ7NHXe/" target="_blank" rel="noopener" aria-label="Sway Services on Facebook"><svg><use href="#i-facebook"/></svg></a>
+        </div>
       </div>
       <div>
         <h4>Services</h4>
@@ -922,7 +944,8 @@
           <li><a href="tel:+13137428903">313-742-8903</a></li>
           <li><a href="mailto:swayservicesss@gmail.com">swayservicesss@gmail.com</a></li>
           <li>12609 Stout St, Detroit, MI</li>
-          <li>8am – 5pm · 24/7 emergency</li>
+          <li>Mon – Sat, 8am – 5pm</li>
+          <li>24/7 emergency service</li>
         </ul>
       </div>
       <div class="sway-big" aria-hidden="true">Sway Way</div>
