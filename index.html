@@ -277,8 +277,8 @@
     .ba.ba-build .shot { aspect-ratio: 4 / 3; }
     .ba.ba-build .shot img { object-position: 50% 62%; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .gallery .shot:first-child { grid-column: span 2; aspect-ratio: auto; }
-    .gallery .shot:first-child img { position: absolute; inset: 0; }
+    .gallery .shot:first-child, .gallery .shot:last-child { grid-column: span 2; aspect-ratio: auto; }
+    .gallery .shot:first-child img, .gallery .shot:last-child img { position: absolute; inset: 0; }
     .gallery .shot { aspect-ratio: 4 / 3; }
     .gallery figcaption {
       position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px;
@@ -473,7 +473,8 @@
       .steps, .review-grid { grid-template-columns: 1fr; }
       .ba { grid-template-columns: 1fr 1fr; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .gallery .shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+      .gallery .shot:first-child, .gallery .shot:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+      .gallery .shot:first-child img, .gallery .shot:last-child img { position: static; }
       .review:nth-child(2) { transform: none; }
       .emergency .wrap { grid-template-columns: auto 1fr; }
       .emergency .btn { grid-column: 1 / -1; justify-self: start; }
@@ -497,7 +498,7 @@
       .tag-label { top: 10px; left: 10px; font-size: 11px; padding: 5px 10px; }
       .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
       .gallery .shot { aspect-ratio: 1 / 1; }
-      .gallery .shot:first-child { aspect-ratio: 16 / 10; }
+      .gallery .shot:first-child, .gallery .shot:last-child { aspect-ratio: 16 / 10; }
       .gallery figcaption { font-size: 13px; padding: 30px 10px 10px; }
       .ba.ba-build { gap: 10px; }
       .ba.ba-build .shot { aspect-ratio: 4 / 5; }
@@ -716,7 +717,7 @@
 
         <div class="gallery">
           <figure class="shot reveal">
-            <img src="images/lawn-stripes-mower.webp" width="1100" height="825" loading="lazy" alt="Large lawn with fresh mowing stripes and a riding mower at work">
+            <img src="images/lawn-stripes.webp" width="1100" height="825" loading="lazy" alt="Wide lawn with crisp, even mowing stripes and trees in the background">
             <figcaption>Commercial grounds mowing</figcaption>
           </figure>
           <figure class="shot reveal">
@@ -724,15 +725,11 @@
             <figcaption>New concrete walkway</figcaption>
           </figure>
           <figure class="shot reveal">
-            <img src="images/lawn-stripes.webp" width="1100" height="825" loading="lazy" alt="Wide backyard lawn with crisp mowing stripes and trees in the background">
-            <figcaption>Clean, even mowing stripes</figcaption>
-          </figure>
-          <figure class="shot reveal">
             <img src="images/lawn-cape-cod.webp" width="1400" height="948" loading="lazy" alt="White Cape Cod style home with a freshly mowed front lawn and trimmed shrubs">
             <figcaption>Fresh cut &amp; trimmed shrubs</figcaption>
           </figure>
           <figure class="shot reveal">
-            <img src="images/lawn-brick-two-story.webp" width="1400" height="1001" loading="lazy" alt="Two-story brick home with a mowed lawn and a tree in front">
+            <img src="images/lawn-stripes-mower.webp" width="1100" height="825" loading="lazy" alt="Large property lawn with fresh mowing stripes and a riding mower at work">
             <figcaption>Grounds maintenance</figcaption>
           </figure>
         </div>
