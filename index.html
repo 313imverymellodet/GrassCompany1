@@ -6,12 +6,13 @@
   <title>Sway Services | Landscaping, Snow Removal &amp; Concrete in Metro Detroit</title>
   <meta name="description" content="Sway Services is a Detroit-based, licensed &amp; insured Michigan Residential Builder serving commercial properties and homeowners with landscaping, snow &amp; ice management, concrete &amp; masonry, exterior improvements and property maintenance in Detroit, Southfield, Royal Oak and Metro Detroit. 24/7 emergency service. Call 313-742-8903.">
   <meta name="theme-color" content="#1e130c">
-  <link rel="canonical" href="https://swayservices.com/">
+  <link rel="canonical" href="https://www.theswayway.com/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sway Services | Metro Detroit Property Services">
   <meta property="og:description" content="Landscaping, snow &amp; ice, concrete, exterior construction and property maintenance. Residential &amp; commercial. Get it done the Sway Way.">
   <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://www.theswayway.com/">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-14 -9 112 98%22%3E%3Cdefs%3E%3Cmask id=%22f-m%22%3E%3Cg transform=%22skewX%28-10%29 translate%2814 0%29%22%3E%3Cpath d=%22M0 0H33L52 7.8V25.8H64L82.4 33.3V79.8H30.5V53.8H0Z%22 fill=%22%23fff%22/%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-width=%223%22%3E%3Cpath d=%22M54 17.3H31V9.3%22/%3E%3Cpath d=%22M-2 26.8H32V43.8%22/%3E%3Cpath d=%22M84 42.3H61V34.8%22/%3E%3Cpath d=%22M29.5 51.6H63.5V70.3%22/%3E%3C/g%3E%3C/g%3E%3C/mask%3E%3ClinearGradient id=%22f-g%22 x1=%220%22 y1=%220%22 x2=%220.35%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23f4bf7e%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23d98a4b%22/%3E%3Cstop offset=%221%22 stop-color=%22%23a65a2a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x=%22-14%22 y=%22-9%22 width=%22112%22 height=%2298%22 rx=%2222.4%22 fill=%22%231e130c%22/%3E%3Crect x=%22-14%22 y=%22-9%22 width=%22112%22 height=%2298%22 fill=%22url%28%23f-g%29%22 mask=%22url%28%23f-m%29%22/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" href="images/logo/apple-touch-icon.png">
@@ -872,6 +873,7 @@
             <input type="hidden" name="_subject" value="New estimate request from swayservices website">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://www.theswayway.com/?sent=1#contact">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <div class="grid-2">
@@ -1001,24 +1003,40 @@
 
     // Form: submit in the background so visitors stay on the page
     const form = document.getElementById('quoteForm');
+    const thanks = '<h3>Thanks, we got it!</h3><p>Someone from Sway Services will reach out shortly. Need help right away? Call <a href="tel:+13137428903">313-742-8903</a>.</p>';
+
+    // Back from a regular (non-background) submission
+    if (new URLSearchParams(location.search).get('sent') === '1') {
+      form.innerHTML = thanks;
+      history.replaceState(null, '', location.pathname + '#contact');
+    }
+
+    // Submit in the background so visitors stay on the page. If that fails
+    // (blocked by an extension, network trouble), fall back to a regular
+    // form post, which FormSubmit handles and then sends the visitor back.
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
-      const original = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = 'Sending…';
+      let data;
       try {
         const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
           body: new FormData(form)
         });
-        if (!res.ok) throw new Error('Request failed');
-        form.innerHTML = '<h3>Thanks, we got it!</h3><p>Someone from Sway Services will reach out shortly. Need help right away? Call <a href="tel:+13137428903">313-742-8903</a>.</p>';
+        data = await res.json();
       } catch (err) {
-        btn.disabled = false;
-        btn.innerHTML = original;
-        alert('Sorry, something went wrong sending your request. Please call us at 313-742-8903.');
+        form.submit();
+        return;
+      }
+      if (data && (data.success === true || data.success === 'true')) {
+        form.innerHTML = thanks;
+      } else if (data && /activat/i.test(data.message || '')) {
+        form.innerHTML = '<h3>Almost there</h3><p>This form needs a one-time activation. Sway Services has been emailed an activation link. Once it is clicked, requests will come through. Need help now? Call <a href="tel:+13137428903">313-742-8903</a>.</p>';
+      } else {
+        form.submit();
       }
     });
   </script>
