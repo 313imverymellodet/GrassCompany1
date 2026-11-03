@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>A cart for you to send · Cartpass</title>
+  <meta name="description" content="Someone put together a cart. Open it to see everything and check out in a couple of taps." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23d2492a'/%3E%3Cpath d='M9 11h15l-2 8H11L9 11zm0 0L8 7H5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='24' r='1.8' fill='white'/%3E%3Ccircle cx='21' cy='24' r='1.8' fill='white'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h14l-2 8H8L6 7zm0 0L5 3H2"/><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg></span>
+        Cartpass
+      </a>
+    </header>
+
+    <div id="loading" class="empty"><span class="spinner"></span> Opening the cart…</div>
+
+    <div id="failed" class="card empty" hidden>
+      <h2 style="margin-bottom:8px">This cart couldn't be opened</h2>
+      <p id="failedMsg">The link may be incomplete. Ask whoever sent it to copy it again.</p>
+      <a class="btn" href="/">Make your own cart</a>
+    </div>
+
+    <main id="view" hidden>
+      <section class="gift-head">
+        <span class="ribbon" id="occasion" hidden></span>
+        <h1 id="headline" style="margin-top:12px"></h1>
+        <p class="lede" id="sublede"></p>
+        <blockquote class="note" id="note" hidden></blockquote>
+      </section>
+
+      <div class="stack">
+        <section class="card" id="checkoutCard">
+          <div id="autoBox" hidden>
+            <a class="btn btn-primary btn-lg btn-block" id="autoBtn" target="_blank" rel="noopener noreferrer"></a>
+            <p class="muted small" id="autoNote" style="margin:10px 0 0"></p>
+          </div>
+          <div id="guidedBox" hidden>
+            <h3 id="guidedTitle"></h3>
+            <p class="muted small" id="guidedNote" style="margin:6px 0 0"></p>
+            <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+            <p class="small" id="progressText" style="margin:8px 0 0"></p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>What's in the cart</h2>
+            <button class="btn btn-ghost small" id="copyList" type="button">Copy list</button>
+          </div>
+          <ul class="items" id="items"></ul>
+          <div class="total-row">
+            <span class="muted">Estimated total <span id="totalNote"></span></span>
+            <span class="price" id="total"></span>
+          </div>
+          <p class="muted small" style="margin:10px 0 0">Prices were checked when the cart was made. The store shows the final price, tax, and shipping at checkout.</p>
+        </section>
+
+        <section class="card" id="shipCard" hidden>
+          <div class="section-head">
+            <h3>Ship it to</h3>
+            <button class="btn btn-ghost small" id="copyAddr" type="button">Copy address</button>
+          </div>
+          <div class="address" id="address"></div>
+          <p class="muted small" style="margin:10px 0 0">At checkout, choose a new shipping address and paste this in. You can mark it as a gift there too.</p>
+        </section>
+
+        <section class="card" id="tellCard">
+          <h3>Ordered it?</h3>
+          <p class="muted small" style="margin:6px 0 12px" id="tellText"></p>
+          <div class="actions" style="margin-top:0">
+            <a class="btn" id="tellSms" href="#">Text them</a>
+            <a class="btn" id="tellMail" href="#">Email them</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="foot">
+      You check out on the store's own site. Cartpass never sees your payment details.<br />
+      <a href="/">Make your own cart</a>
+    </footer>
+  </div>
+  <script type="module" src="/recipient.js"></script>
+</body>
+</html>
