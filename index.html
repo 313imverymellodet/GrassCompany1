@@ -253,7 +253,7 @@
     .svc.snow { background: linear-gradient(180deg, #fff 0%, var(--snow) 100%); }
     .svc.snow .svc-icon { background: #1b3a52; color: #cfe8ff; }
 
-    /* Work / gallery */
+    /* Work: before & after sets */
     .work { background: var(--cream); }
     .ba { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
     .shot { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--brown-2); }
@@ -275,17 +275,10 @@
     .ba-caption strong { font-family: var(--display); font-stretch: 85%; font-size: 24px; text-transform: uppercase; }
     .ba-caption span { color: rgba(255,255,255,.72); font-size: 15px; }
     .ba.ba-build { grid-template-columns: 1fr 1fr; margin-top: 28px; }
+    .ba.ba-porch { margin-top: 28px; }
     .ba.ba-build .shot { aspect-ratio: 4 / 3; }
     .ba.ba-build .shot img { object-position: 50% 62%; }
     .ba.ba-commercial .shot:first-child img { object-position: 50% 28%; }
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .gallery .shot:first-child, .gallery .shot:last-child { grid-column: span 2; aspect-ratio: auto; }
-    .gallery .shot:first-child img, .gallery .shot:last-child img { position: absolute; inset: 0; }
-    .gallery .shot { aspect-ratio: 4 / 3; }
-    .gallery figcaption {
-      position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px;
-      background: linear-gradient(transparent, rgba(19,11,6,.85)); color: #fff; font-weight: 600; font-size: 15px;
-    }
 
     /* Emergency band */
     .emergency { background: var(--brown); color: #fff; overflow: hidden; }
@@ -474,9 +467,6 @@
       .svc:nth-child(5) { grid-column: 1 / -1; }
       .steps, .review-grid { grid-template-columns: 1fr; }
       .ba { grid-template-columns: 1fr 1fr; }
-      .gallery { grid-template-columns: 1fr 1fr; }
-      .gallery .shot:first-child, .gallery .shot:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-      .gallery .shot:first-child img, .gallery .shot:last-child img { position: static; }
       .review:nth-child(2) { transform: none; }
       .emergency .wrap { grid-template-columns: auto 1fr; }
       .emergency .btn { grid-column: 1 / -1; justify-self: start; }
@@ -498,10 +488,6 @@
       .svc:nth-child(5) { grid-column: auto; }
       .ba { gap: 10px; }
       .tag-label { top: 10px; left: 10px; font-size: 11px; padding: 5px 10px; }
-      .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .gallery .shot { aspect-ratio: 1 / 1; }
-      .gallery .shot:first-child, .gallery .shot:last-child { aspect-ratio: 16 / 10; }
-      .gallery figcaption { font-size: 13px; padding: 30px 10px 10px; }
       .ba.ba-build { gap: 10px; }
       .ba.ba-build .shot { aspect-ratio: 4 / 5; }
       .stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
@@ -662,7 +648,7 @@
             <div class="svc-icon"><svg><use href="#i-tools"/></svg></div>
             <h3>General Contracting &amp; Property Maintenance</h3>
             <p>One reliable point of contact for ongoing upkeep and projects on homes, rentals and commercial sites.</p>
-            <ul><li>Ongoing upkeep</li><li>Project management</li><li>Rental &amp; commercial</li></ul>
+            <ul><li>Ongoing upkeep</li><li>Project management</li><li>Residential &amp; commercial</li></ul>
           </article>
         </div>
       </div>
@@ -732,23 +718,27 @@
           </div>
         </div>
 
-        <div class="gallery">
-          <figure class="shot reveal">
-            <img src="images/lawn-stripes.webp" width="1100" height="825" loading="lazy" alt="Wide lawn with crisp, even mowing stripes and trees in the background">
-            <figcaption>Commercial grounds mowing</figcaption>
+        <div class="ba ba-porch reveal">
+          <figure class="shot">
+            <img src="images/porch-corner-before.webp" width="900" height="1200" loading="lazy" alt="Corner of a front porch before the rebuild, with a crumbling base and trash piled against it">
+            <span class="tag-label">Before</span>
           </figure>
-          <figure class="shot reveal">
-            <img src="images/concrete-walkway.webp" width="825" height="1100" loading="lazy" alt="Newly poured concrete driveway between two brick homes">
-            <figcaption>New concrete driveway</figcaption>
+          <figure class="shot">
+            <img src="images/porch-corner-after.webp" width="900" height="1200" loading="lazy" alt="The same porch corner after the rebuild, sitting on a new concrete block base">
+            <span class="tag-label after">After</span>
           </figure>
-          <figure class="shot reveal">
-            <img src="images/lawn-cape-cod.webp" width="1400" height="948" loading="lazy" alt="White Cape Cod style home with a freshly mowed front lawn and trimmed shrubs">
-            <figcaption>Fresh cut &amp; trimmed shrubs</figcaption>
+          <figure class="shot">
+            <img src="images/porch-steps-before.webp" width="900" height="936" loading="lazy" alt="Side of the porch before the rebuild, with a cracked base, broken steps and piled leaves">
+            <span class="tag-label">Before</span>
           </figure>
-          <figure class="shot reveal">
-            <img src="images/lawn-stripes-mower.webp" width="1100" height="825" loading="lazy" alt="Large property lawn with fresh mowing stripes and a riding mower at work">
-            <figcaption>Grounds maintenance</figcaption>
+          <figure class="shot">
+            <img src="images/porch-steps-after.webp" width="900" height="1200" loading="lazy" alt="The same side after the rebuild, with a new block base and new concrete steps">
+            <span class="tag-label after">After</span>
           </figure>
+          <div class="ba-caption">
+            <strong>Porch &amp; steps rebuild</strong>
+            <span>A crumbling porch base and broken steps, rebuilt with a new block base and new concrete steps.</span>
+          </div>
         </div>
       </div>
     </section>
