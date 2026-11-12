@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1c1c21" />
+  <meta name="robots" content="noindex" />
+  <title>A cart for you · Cartpass</title>
+  <meta name="description" content="Someone put together a cart. Open it to see everything and check out in a couple of taps." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%235b3bf6'/%3E%3Cpath d='M8 9h2l2 9h9l2-6H11' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='13' cy='22.5' r='1.6' fill='white'/%3E%3Ccircle cx='20' cy='22.5' r='1.6' fill='white'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <div id="splash" class="splash" aria-hidden="true"><div class="wordmark">cartpass<span class="dot"></span></div></div>
+
+  <div class="app">
+    <div id="failed" class="card" hidden style="margin-top:24px; text-align:center">
+      <h2 style="margin-bottom:10px">This cart couldn't be opened</h2>
+      <p class="muted" id="failedMsg">The link may be incomplete. Ask whoever sent it to copy it again.</p>
+      <a class="btn btn-brand" href="/">Make your own cart</a>
+    </div>
+
+    <main id="view" hidden>
+      <div class="promo">
+        <span class="tag" id="fromTag"></span><span id="promoText"></span>
+        <div class="subline" id="promoSub"></div>
+      </div>
+
+      <section class="hero" id="hero">
+        <div class="bg" id="heroBg"></div>
+        <div class="shade"></div>
+        <div class="controls">
+          <button class="glass circle" type="button" id="shareBtn" aria-label="Share this cart" data-icon="share"></button>
+          <span class="spacer"></span>
+          <button class="glass" type="button" id="copyList">Copy list</button>
+        </div>
+        <div class="title">
+          <h1 id="storeTitle"></h1>
+          <p id="heroSub"></p>
+          <div class="pills" id="heroPills"></div>
+        </div>
+      </section>
+
+      <div class="stack" style="margin-top:6px">
+        <section class="card note-card" id="note" hidden></section>
+
+        <section class="card" id="guidedBox" hidden>
+          <div class="list-row">
+            <span class="disc" data-icon="list"></span>
+            <div class="grow">
+              <div class="t" id="guidedTitle"></div>
+              <div class="muted small" id="guidedNote"></div>
+            </div>
+          </div>
+          <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+          <p class="small" id="progressText" style="margin:8px 0 0; font-weight:700"></p>
+        </section>
+
+        <section class="card" id="autoBox" hidden>
+          <div class="list-row">
+            <span class="disc" data-icon="cart"></span>
+            <div class="grow">
+              <div class="t">Ready in one tap</div>
+              <div class="muted small" id="autoNote"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="section">
+        <div class="section-head"><h2>In this cart</h2><span class="muted small" id="countLabel"></span></div>
+        <ul class="grid" id="items"></ul>
+        <p class="muted small" style="margin:18px 4px 0">Prices were checked when the cart was made. The store shows the final price, tax, and shipping at checkout.</p>
+      </section>
+
+      <div class="stack section">
+        <section class="card" id="shipCard" hidden>
+          <div class="list-row">
+            <span class="disc" data-icon="pin"></span>
+            <div class="grow">
+              <div class="t">Ship it to</div>
+              <div class="address" id="address" style="margin-top:4px"></div>
+            </div>
+          </div>
+          <p class="muted small" style="margin:12px 0 0">At checkout, choose a new shipping address and paste this in. You can mark it as a gift there too.</p>
+          <div class="actions"><button class="btn btn-block" id="copyAddr" type="button" data-icon="copy">Copy address</button></div>
+        </section>
+
+        <section class="card" id="tellCard">
+          <div class="list-row">
+            <span class="disc" data-icon="gift"></span>
+            <div class="grow">
+              <div class="t">Ordered it?</div>
+              <div class="muted small" id="tellText"></div>
+            </div>
+          </div>
+          <div class="share-grid" style="grid-template-columns:1fr 1fr">
+            <a class="btn" id="tellSms" href="#" data-icon="message">Text them</a>
+            <a class="btn" id="tellMail" href="#" data-icon="mail">Email them</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="foot">
+      You check out on the store's own site. Cartpass never sees your payment details.<br />
+      <a href="/">Make your own cart</a>
+    </footer>
+  </div>
+
+  <div class="dock" id="dock" hidden>
+    <div class="checkout-bar">
+      <div class="sum"><b id="total"></b><span id="totalNote"></span></div>
+      <a class="btn btn-brand" id="ctaBtn" target="_blank" rel="noopener noreferrer"></a>
+    </div>
+  </div>
+
+  <script type="module" src="/recipient.js"></script>
+</body>
+</html>
