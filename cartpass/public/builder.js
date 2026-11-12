@@ -1,4 +1,4 @@
-import { el, $, toast, copyText, thumb, store as ls } from "/lib/ui.js";
+import { el, $, toast, copyText, tile, icon, hydrateIcons, storeColor, dismissSplash, store as ls } from "/lib/ui.js";
 import { resolveStore, cartTotal, formatMoney, clampQty } from "/lib/stores.js";
 import { sanitizeItem, sanitizeCart, encodeCart, randomId } from "/lib/cart.js";
 
@@ -37,7 +37,12 @@ function initForm() {
   const chips = $("#storeChips");
   for (const name of STORE_CHIPS) {
     chips.append(
-      el("button", { type: "button", class: "chip", onclick: () => { $("#storeInput").value = name; syncChips(); } }, name),
+      el(
+        "button",
+        { type: "button", class: "chip", onclick: () => { $("#storeInput").value = name; syncChips(); } },
+        el("span", { class: "disc", style: { background: storeColor(name) } }, name.charAt(0)),
+        name,
+      ),
     );
   }
   $("#storeInput").addEventListener("input", syncChips);
@@ -79,19 +84,44 @@ function readRequest() {
 
 // ---------- agent ----------
 
-function feedLine(icon, text, cls) {
-  const li = el("li", { class: cls }, el("span", { class: "ico", "aria-hidden": "true" }, icon), el("span", { class: "txt" }, text));
+function feedLine(glyph, text) {
   const feed = $("#feed");
-  feed.append(li);
-  feed.scrollTop = feed.scrollHeight;
+  feed.append(el("li", {}, el("span", { class: "ico", "aria-hidden": "true" }, glyph), el("span", {}, text)));
+  while (feed.children.length > 4) feed.firstElementChild.remove();
+}
+
+/** Live tiles in the dark card: found items, then one shimmering placeholder while working. */
+function renderLiveTiles() {
+  const row = $("#liveTiles");
+  const items = state.cart?.items || [];
+  row.replaceChildren(
+    ...items.map((item) =>
+      el("div", { class: "product" }, (() => {
+        const t = tile(item, state.cart.store?.name);
+        if (item.price) t.append(el("span", { class: "price-pill" }, formatMoney(item.price)));
+        return t;
+      })()),
+    ),
+    ...(running ? [el("div", { class: "placeholder", "aria-hidden": "true" })] : []),
+  );
+  row.hidden = !items.length && !running;
+}
+
+function setProgressState(mode) {
+  const btn = $("#progBtn");
+  btn.replaceChildren(icon(mode === "running" ? "stop" : "arrow"));
+  btn.setAttribute("aria-label", mode === "running" ? "Stop shopping" : "Go to your cart");
+  $("#progSpin").hidden = mode !== "running";
+  $("#progressTitle").replaceChildren(
+    ...(mode === "running" ? ["Building", el("br"), "your cart"] : mode === "done" ? ["Your cart", el("br"), "is ready"] : ["Stopped"]),
+  );
 }
 
 async function runAgent(body, { replaceItems }) {
   if (running) return;
   running = new AbortController();
   $("#progressCard").hidden = false;
-  $("#progressTitle").replaceChildren(el("span", { class: "spinner" }), " Shopping…");
-  $("#stopBtn").hidden = false;
+  setProgressState("running");
   $("#feed").replaceChildren();
   $("#buildBtn").disabled = true;
   $("#shareBox").hidden = true;
@@ -102,7 +132,9 @@ async function runAgent(body, { replaceItems }) {
     items: replaceItems ? [] : [...(state.cart?.items || [])],
     summary: "",
   };
+  $("#progressLabel").textContent = `Shopping ${state.cart.store?.name || body.store}`;
   renderCart();
+  $("#progressCard").scrollIntoView({ behavior: "smooth", block: "start" });
 
   const headers = { "content-type": "application/json" };
   const code = $("#accessCode").value.trim();
@@ -139,12 +171,11 @@ async function runAgent(body, { replaceItems }) {
     if (!finished) throw new Error("The connection closed early. What was found so far is kept.");
   } catch (err) {
     if (err.name === "AbortError") feedLine("■", "Stopped. Kept what was found so far.");
-    else feedLine("!", err.message, "added");
+    else feedLine("!", err.message);
   } finally {
     running = null;
     $("#buildBtn").disabled = false;
-    $("#stopBtn").hidden = true;
-    $("#progressTitle").textContent = finished ? "Done shopping" : "Stopped";
+    setProgressState(finished ? "done" : "stopped");
     save();
     renderCart();
   }
@@ -172,7 +203,7 @@ function handleEvent(ev) {
       const item = sanitizeItem(ev.item);
       if (item) {
         cart.items.push(item);
-        feedLine("+", `Added ${item.title}${item.price ? ` (${formatMoney(item.price)})` : ""}`, "added");
+        feedLine("+", `Added ${item.title}${item.price ? ` (${formatMoney(item.price)})` : ""}`);
         renderCart();
       }
       break;
@@ -188,7 +219,7 @@ function handleEvent(ev) {
       cart.store = ev.store || cart.store;
       cart.items = (ev.items || []).map(sanitizeItem).filter(Boolean);
       cart.summary = ev.summary || "";
-      feedLine("✓", ev.summary || "Cart ready.", "added");
+      feedLine("✓", ev.summary || "Cart ready.");
       return true;
     case "error":
       throw new Error(ev.message);
@@ -210,14 +241,19 @@ const shortUrl = (u) => {
 function renderCart() {
   const cart = state.cart;
   const show = !!cart;
-  $("#cartCard").hidden = !show;
-  $("#sendCard").hidden = !show || !cart.items.length;
+  $("#cart").hidden = !show;
+  $("#send").hidden = !show || !cart.items.length;
   $("#startOver").hidden = !show;
+  const n = show ? cart.items.reduce((s, i) => s + i.quantity, 0) : 0;
+  for (const b of [$("#topBadge"), $("#navBadge")]) {
+    b.hidden = !n;
+    b.textContent = n;
+  }
+  renderLiveTiles();
   if (!show) return;
 
-  $("#cartTitle").textContent = `Your ${cart.store?.name || ""} cart`.replace("  ", " ");
+  $("#cartTitle").textContent = cart.store?.name ? `Your ${cart.store.name} cart` : "Your cart";
   $("#sendStoreName").textContent = cart.store?.name || "the store";
-  const n = cart.items.reduce((s, i) => s + i.quantity, 0);
   $("#cartCount").textContent = n ? `${n} item${n === 1 ? "" : "s"}` : "";
   $("#summary").hidden = !cart.summary;
   $("#summary").textContent = cart.summary || "";
@@ -226,40 +262,35 @@ function renderCart() {
   const list = $("#items");
   list.replaceChildren();
   if (!cart.items.length) {
-    list.append(el("li", { class: "empty" }, running ? "Items will show up here as they're found." : "No items yet. Add one by link below."));
+    list.append(el("li", { class: "empty" }, running ? "Items show up here as they're found." : "No items yet. Add one by link below."));
   }
   for (const item of cart.items) {
+    const t = tile(item, cart.store?.name);
+    if (item.price) t.append(el("span", { class: "price-pill" }, formatMoney(item.price)));
+    t.append(
+      el("button", { type: "button", class: "fab", "aria-label": `Remove ${item.title}`, onclick: () => removeItem(item.id) }, icon("close")),
+    );
     list.append(
       el(
         "li",
-        { class: "item" },
-        thumb(item, cart.store?.name),
+        { class: "product" },
+        t,
+        el("a", { class: "name", href: item.url, target: "_blank", rel: "noopener noreferrer" }, item.title),
+        item.variant ? el("div", { class: "sub" }, item.variant) : null,
+        item.reason ? el("div", { class: "reason" }, item.reason) : null,
         el(
           "div",
-          {},
-          el("a", { class: "item-title", href: item.url, target: "_blank", rel: "noopener noreferrer" }, item.title),
-          item.variant ? el("div", { class: "item-meta" }, item.variant) : null,
-          item.reason ? el("div", { class: "item-reason" }, item.reason) : null,
-          el("button", { class: "btn btn-ghost small", type: "button", style: "margin-top:4px;margin-left:-8px", onclick: () => removeItem(item.id) }, "Remove"),
-        ),
-        el(
-          "div",
-          { class: "item-side" },
-          el("span", { class: "price" }, item.price ? formatMoney(item.price * item.quantity) : "—"),
-          el(
-            "span",
-            { class: "qty" },
-            el("button", { type: "button", "aria-label": `Fewer ${item.title}`, onclick: () => setQty(item.id, item.quantity - 1) }, "−"),
-            el("span", { "aria-label": "Quantity" }, item.quantity),
-            el("button", { type: "button", "aria-label": `More ${item.title}`, onclick: () => setQty(item.id, item.quantity + 1) }, "+"),
-          ),
+          { class: "stepper" },
+          el("button", { type: "button", "aria-label": `Fewer ${item.title}`, onclick: () => setQty(item.id, item.quantity - 1) }, "−"),
+          el("span", { "aria-label": "Quantity" }, item.quantity),
+          el("button", { type: "button", "aria-label": `More ${item.title}`, onclick: () => setQty(item.id, item.quantity + 1) }, "+"),
         ),
       ),
     );
   }
   const { total, unknown } = cartTotal(cart);
   $("#total").textContent = formatMoney(total);
-  $("#totalNote").textContent = unknown ? `(${unknown} without a price)` : "";
+  $("#totalNote").textContent = unknown ? `${unknown} without a price` : `${n} item${n === 1 ? "" : "s"}`;
   $("#totalRow").hidden = !cart.items.length;
 }
 
@@ -357,7 +388,8 @@ $("#manualBtn").addEventListener("click", () => {
   save();
   renderCart();
   $("#addManual").open = true;
-  $("#mUrl").focus();
+  $("#cart").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("#mUrl").focus({ preventScroll: true });
 });
 
 $("#refineForm").addEventListener("submit", (e) => {
@@ -404,7 +436,10 @@ $("#sendForm").addEventListener("input", () => {
   $("#shareBox").hidden = true;
 });
 $("#copyBtn").addEventListener("click", () => copyText($("#shareUrl").value));
-$("#stopBtn").addEventListener("click", () => running?.abort());
+$("#progBtn").addEventListener("click", () => {
+  if (running) running.abort();
+  else $("#cart").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 $("#startOver").addEventListener("click", () => {
   if (running) running.abort();
   state.cart = null;
@@ -414,6 +449,22 @@ $("#startOver").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Highlight the section in view on the floating nav.
+const navFor = { build: "#navBuild", cart: "#navCart", send: "#navSend" };
+const io = new IntersectionObserver(
+  (entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      for (const sel of Object.values(navFor)) $(sel).classList.remove("active");
+      $(navFor[e.target.id]).classList.add("active");
+    }
+  },
+  { rootMargin: "-45% 0px -50% 0px" },
+);
+for (const id of Object.keys(navFor)) io.observe(document.getElementById(id));
+
+hydrateIcons();
 initForm();
 renderCart();
 loadConfig().then(renderCart);
+dismissSplash(900);

@@ -1,4 +1,4 @@
-import { el, $, copyText, thumb, store as ls } from "/lib/ui.js";
+import { el, $, copyText, tile, icon, hydrateIcons, dismissSplash, store as ls } from "/lib/ui.js";
 import { checkoutPlan, cartTotal, formatMoney } from "/lib/stores.js";
 import { decodeCart, sanitizeCart } from "/lib/cart.js";
 
@@ -44,97 +44,130 @@ function addressText(a) {
 function render(cart, key, tag) {
   const storeName = cart.store.name;
   const from = cart.from || "Someone";
+  const n = cart.items.reduce((s, i) => s + i.quantity, 0);
+  const itemsLabel = `${n} item${n === 1 ? "" : "s"}`;
+  const { total, unknown } = cartTotal(cart);
   document.title = `${from}'s ${storeName} cart · Cartpass`;
 
-  if (cart.occasion) {
-    $("#occasion").hidden = false;
-    $("#occasion").textContent = cart.occasion;
-  }
-  $("#headline").textContent = `${from} sent you a cart from ${storeName}`;
-  const n = cart.items.reduce((s, i) => s + i.quantity, 0);
-  $("#sublede").textContent = `${n} item${n === 1 ? "" : "s"}, picked and ready. Check out on ${storeName} in a couple of taps.`;
+  // Promo strip + hero
+  $("#fromTag").textContent = `From ${from}`;
+  $("#promoText").textContent = cart.occasion ? ` ${cart.occasion} wishlist` : " picked these out";
+  $("#promoSub").textContent = cart.shipTo?.city ? `Ships to ${cart.shipTo.city}` : `${itemsLabel}, ready to order`;
+  const cover = cart.items.find((i) => i.image)?.image;
+  if (cover) $("#heroBg").style.backgroundImage = `url(${JSON.stringify(cover)})`;
+  $("#storeTitle").textContent = storeName;
+  $("#heroSub").textContent = `${itemsLabel}${total ? ` · ${formatMoney(total, cart.currency)}` : ""}`;
+  $("#heroPills").replaceChildren(
+    ...cart.items.slice(0, 3).map((item, idx) => {
+      const disc = el("span", { class: "disc" });
+      if (item.image) disc.append(el("img", { src: item.image, alt: "", referrerpolicy: "no-referrer" }));
+      else disc.textContent = item.title.charAt(0).toUpperCase();
+      const short = item.title.length > 18 ? `${item.title.slice(0, 17).trim()}…` : item.title;
+      return el(
+        "button",
+        { type: "button", class: "chip", onclick: () => document.getElementById(`item-${idx}`)?.scrollIntoView({ behavior: "smooth", block: "center" }) },
+        disc,
+        short,
+      );
+    }),
+  );
+
   if (cart.note) {
     $("#note").hidden = false;
-    $("#note").replaceChildren(cart.note, el("cite", {}, `${from}`));
+    $("#note").replaceChildren(
+      cart.note,
+      el("div", { class: "from" }, el("span", { class: "disc" }, from.charAt(0).toUpperCase()), from),
+    );
   }
 
   // Checkout plan: one-click pre-filled cart where the store supports it, otherwise a checklist.
   const plan = checkoutPlan(cart, { amazonTag: tag });
   const doneKey = `cartpass:done:${key}`;
   const done = new Set(ls.get(doneKey, []));
+  const cta = $("#ctaBtn");
+  $("#dock").hidden = false;
+  $("#total").textContent = formatMoney(total, cart.currency);
+  $("#totalNote").textContent = unknown ? `${itemsLabel} · ${unknown} unpriced` : `${itemsLabel} · ${storeName}`;
 
   if (plan.mode === "auto") {
     $("#autoBox").hidden = false;
-    $("#autoBtn").href = plan.url;
-    $("#autoBtn").textContent = plan.label;
     $("#autoNote").textContent = plan.note;
+    cta.href = plan.url;
+    cta.replaceChildren(icon("cart"), storeName === "Amazon" || plan.url.includes("/gp/aws/") ? "Add all to cart" : "Check out");
+    cta.setAttribute("aria-label", plan.label);
   } else {
     $("#guidedBox").hidden = false;
     $("#guidedTitle").textContent = plan.label;
     $("#guidedNote").textContent = plan.note;
   }
 
-  const list = $("#items");
   const updateProgress = () => {
+    if (plan.mode !== "guided") return;
     const count = cart.items.filter((i) => done.has(i.url)).length;
     $("#progressBar").style.width = `${(count / cart.items.length) * 100}%`;
     $("#progressText").textContent =
       count === cart.items.length ? "Everything's in your cart. Time to check out." : `${count} of ${cart.items.length} added to your cart`;
+    const next = cart.items.find((i) => !done.has(i.url));
+    if (next) {
+      cta.href = next.url;
+      cta.replaceChildren(icon("external"), count ? "Open next item" : "Open first item");
+    } else {
+      cta.href = cart.store.domain ? `https://www.${cart.store.domain.replace(/^www\./, "")}/` : cart.items[0].url;
+      cta.replaceChildren(icon("check"), `Check out on ${storeName}`);
+    }
   };
 
-  for (const item of cart.items) {
-    const row = el("li", { class: `item${done.has(item.url) ? " done" : ""}` });
-    const box = el("input", { type: "checkbox", checked: done.has(item.url) || null });
-    box.addEventListener("change", () => {
-      if (box.checked) done.add(item.url);
-      else done.delete(item.url);
-      ls.set(doneKey, [...done]);
-      row.classList.toggle("done", box.checked);
-      updateProgress();
-    });
-    row.append(
-      thumb(item, storeName),
-      el(
-        "div",
-        {},
-        el("a", { class: "item-title", href: item.url, target: "_blank", rel: "noopener noreferrer" }, item.title),
-        el("div", { class: "item-meta" }, [item.variant, item.quantity > 1 ? `Qty ${item.quantity}` : null].filter(Boolean).join(" · ") || null),
-        item.reason ? el("div", { class: "item-reason" }, item.reason) : null,
-        plan.mode === "guided"
-          ? el(
-              "div",
-              { class: "actions", style: "margin-top:8px" },
-              el("a", { class: "btn small", href: item.url, target: "_blank", rel: "noopener noreferrer" }, `Open on ${storeName} ↗`),
-              el("label", { class: "check" }, box, "Added"),
-            )
-          : null,
-      ),
-      el(
-        "div",
-        { class: "item-side" },
-        el("span", { class: "price" }, item.price ? formatMoney(item.price * item.quantity, cart.currency) : "—"),
-        item.quantity > 1 && item.price ? el("span", { class: "muted small" }, `${formatMoney(item.price, cart.currency)} each`) : null,
-      ),
+  const list = $("#items");
+  cart.items.forEach((item, idx) => {
+    const card = el("li", { class: `product${done.has(item.url) ? " done" : ""}`, id: `item-${idx}` });
+    const t = tile(item, storeName);
+    if (item.price) t.append(el("span", { class: "price-pill" }, formatMoney(item.price, cart.currency)));
+    if (item.quantity > 1) t.append(el("span", { class: "qty-pill" }, `×${item.quantity}`));
+    if (plan.mode === "guided") {
+      const fab = el("button", { type: "button", class: `fab${done.has(item.url) ? " on" : ""}`, "aria-pressed": String(done.has(item.url)), "aria-label": `Mark ${item.title} as added` }, icon("check"));
+      fab.addEventListener("click", () => {
+        const on = !done.has(item.url);
+        if (on) done.add(item.url);
+        else done.delete(item.url);
+        ls.set(doneKey, [...done]);
+        fab.classList.toggle("on", on);
+        fab.setAttribute("aria-pressed", String(on));
+        card.classList.toggle("done", on);
+        updateProgress();
+      });
+      t.append(fab);
+    }
+    const link = el("a", { href: item.url, target: "_blank", rel: "noopener noreferrer", "aria-label": `${item.title} on ${storeName}` }, t);
+    card.append(
+      ...[
+      plan.mode === "guided" ? t : link,
+      el("a", { class: "name", href: item.url, target: "_blank", rel: "noopener noreferrer" }, item.title),
+      item.variant ? el("div", { class: "sub" }, item.variant) : null,
+      item.reason ? el("div", { class: "reason" }, item.reason) : null,
+      item.quantity > 1 && item.price ? el("div", { class: "cost" }, `${formatMoney(item.price * item.quantity, cart.currency)} total`) : null,
+      ].filter(Boolean),
     );
-    list.append(row);
-  }
-  if (plan.mode === "guided") updateProgress();
-
-  const { total, unknown } = cartTotal(cart);
-  $("#total").textContent = formatMoney(total, cart.currency);
-  $("#totalNote").textContent = unknown ? `(${unknown} without a price)` : "";
+    list.append(card);
+  });
+  $("#countLabel").textContent = itemsLabel;
+  updateProgress();
 
   $("#copyList").addEventListener("click", () =>
     copyText(
       [`${from}'s ${storeName} cart`, ...cart.items.map((i) => `- ${i.quantity > 1 ? `${i.quantity}x ` : ""}${i.title}${i.variant ? ` (${i.variant})` : ""}: ${i.url}`)].join("\n"),
+      "List copied",
     ),
   );
+  $("#shareBtn").addEventListener("click", () => {
+    if (navigator.share) navigator.share({ title: `${from}'s ${storeName} cart`, url: location.href }).catch(() => {});
+    else copyText(location.href, "Link copied");
+  });
 
   if (cart.shipTo) {
     $("#shipCard").hidden = false;
     const text = addressText(cart.shipTo);
     $("#address").textContent = text;
-    $("#copyAddr").addEventListener("click", () => copyText(text));
+    $("#copyAddr").addEventListener("click", () => copyText(text, "Address copied"));
   }
 
   const thanks = `I just ordered your ${storeName} cart!`;
@@ -142,6 +175,8 @@ function render(cart, key, tag) {
   $("#tellSms").href = `sms:?&body=${encodeURIComponent(thanks)}`;
   $("#tellMail").href = `mailto:?subject=${encodeURIComponent("Your cart is ordered")}&body=${encodeURIComponent(thanks)}`;
 }
+
+hydrateIcons();
 
 (async () => {
   try {
@@ -156,6 +191,6 @@ function render(cart, key, tag) {
       $("#failedMsg").textContent = err.message;
     }
   } finally {
-    $("#loading").hidden = true;
+    dismissSplash(700);
   }
 })();
