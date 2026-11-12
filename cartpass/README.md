@@ -2,6 +2,14 @@
 
 Tell an AI shopper what you want from any store. It builds the cart. Send the link to someone, and it opens with everything ready so they can order it for you: birthdays, wishlists, "can you grab this for me," and so on.
 
+## The app
+
+- **Onboarding:** a splash screen, a short intro with floating product illustrations, then your name. It shows only on the first visit.
+- **Home:** one composer. Pick a store from a searchable sheet, describe what you want, and set a budget. Below it are recent carts and idea starters.
+- **Shopping:** a full-screen live view while the agent works. Products fill in as they're found.
+- **Cart:** a product grid with quantity steppers, add-by-link, and "ask for changes". Sending happens in a bottom sheet with occasion chips, a note, and an optional saved address.
+- **Carts and You:** every cart you've made, plus your name and shipping address. All of it is stored on your device only.
+
 ## How it works
 
 1. **You describe it.** Pick a store (a name like "Amazon" or a link to any shop) and say what you want: sizes, colors, budget.
@@ -52,7 +60,9 @@ api/config.js         tells the front end what's enabled
 lib/agent.js          the Claude tool-use loop: add_to_cart, remove_from_cart, shopify_lookup, finish_cart
 lib/shopify.js        Shopify storefront catalog lookup
 lib/storage.js        Upstash / Vercel KV REST client
-public/index.html     builder: request -> live agent feed -> cart editor -> send
+public/index.html     app shell: onboarding, home, shopping, cart, carts, profile, sheets
+public/app.js         router, onboarding, agent runs, cart editing, sending
+public/lib/art.js     hand-drawn product illustrations
 public/cart.html      what the recipient sees
 public/lib/stores.js  store detection and checkout link builders (shared by browser and server)
 public/lib/cart.js    cart validation and link encoding (shared by browser and server)

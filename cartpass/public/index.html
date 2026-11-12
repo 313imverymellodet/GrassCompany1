@@ -16,194 +16,243 @@
   <div id="splash" class="splash" aria-hidden="true"><div class="wordmark">cartpass<span class="dot"></span></div></div>
   <script>try { if (sessionStorage.getItem("cp_seen")) document.getElementById("splash").remove(); sessionStorage.setItem("cp_seen", "1"); } catch (e) {}</script>
 
-  <div class="app">
-    <header class="topbar">
-      <a class="avatar" href="/" aria-label="Cartpass home" data-icon="cart"></a>
-      <a class="pill" href="#build" data-icon="sparkle">Build</a>
-      <a class="pill" href="#cart" data-icon="cart">Cart <span class="badge" id="topBadge" hidden>0</span></a>
-      <a class="pill" href="#send" data-icon="gift">Send</a>
-      <button class="pill" type="button" id="startOver" hidden>Start over</button>
-    </header>
+  <!-- ============ Onboarding ============ -->
+  <section class="view onboard" id="v-onboard" aria-label="Welcome">
+    <div class="top">
+      <span class="tagline" data-icon="sparkle">An AI personal shopper</span>
+      <button class="skip" type="button" id="obSkip">Skip</button>
+    </div>
+    <div class="stage" id="obStage">
+      <div class="copy">
+        <div class="wordmark" id="obMark">cartpass<span class="dot"></span></div>
+        <div class="out" data-step="1"><h1>Say what you want</h1><p>Any store. Sizes, colors, a budget. Just describe it.</p></div>
+        <div class="out" data-step="2"><h1>We fill the cart</h1><p>Your shopper finds the exact products and builds the cart for you.</p></div>
+        <div class="out" data-step="3"><h1>They check out</h1><p>Send one link. It opens ready to order, so someone can buy it for you.</p></div>
+        <div class="out name-step" data-step="4">
+          <h1>What should we call you?</h1>
+          <p>So people know who the cart is from.</p>
+          <input type="text" class="name-input" id="obName" placeholder="Your name" autocomplete="given-name" maxlength="40" />
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="dots" id="obDots" aria-hidden="true"></div>
+      <button class="btn btn-brand btn-lg btn-block" type="button" id="obNext">Get started</button>
+      <p class="fine">No account needed. Your carts stay on this device until you send them.</p>
+    </div>
+  </section>
 
-    <!-- Build -->
-    <section id="build">
-      <h1>What are we<br />shopping for?</h1>
-      <p class="muted" style="margin:10px 4px 18px; font-size:1.05rem">An AI shopper fills the cart. You send the link. They check out on the store's own site.</p>
+  <div class="shell">
+    <!-- ============ Home ============ -->
+    <section class="view" id="v-home">
+      <header class="topbar">
+        <a class="avatar" href="#/you" id="homeAvatar" aria-label="Your profile"></a>
+        <a class="pill" href="#/carts" data-icon="bag">Carts <span class="badge" id="cartsBadge" hidden></span></a>
+        <a class="pill" href="#ideas" data-icon="sparkle" id="ideasPill">Ideas</a>
+        <a class="pill" href="#/you" data-icon="pin">Ship to</a>
+      </header>
 
-      <form class="card" id="requestForm" autocomplete="off">
-        <div class="field">
-          <label for="storeInput">Store <span class="hint">· a name or a link</span></label>
-          <input type="text" id="storeInput" name="store" placeholder="Amazon, Target, or allbirds.com" required />
-          <div class="chips" id="storeChips"></div>
-        </div>
-        <div class="field">
-          <label for="wishlist">What do you want?</label>
-          <textarea id="wishlist" name="wishlist" rows="4" required placeholder="A cozy setup for my new apartment: a soft throw blanket (neutral colors), a reading lamp, and a pour-over coffee kit. I wear size M."></textarea>
-        </div>
-        <div class="row field">
-          <div>
-            <label for="budget">Budget <span class="hint">· optional</span></label>
-            <input type="number" id="budget" name="budget" min="1" step="1" inputmode="numeric" placeholder="$150" />
-          </div>
-          <div id="accessField" hidden>
-            <label for="accessCode">Access code</label>
-            <input type="password" id="accessCode" name="accessCode" placeholder="From the site owner" />
-          </div>
-        </div>
-        <div class="banner" id="setupBanner" hidden style="margin-top:16px"></div>
-        <div class="actions">
-          <button class="btn btn-brand btn-lg btn-block" type="submit" id="buildBtn" data-icon="sparkle">Build my cart</button>
-          <button class="btn btn-ghost btn-block" type="button" id="manualBtn">I'll add items myself</button>
+      <div class="greet">
+        <div class="hi" id="hello">Hi there</div>
+        <h1>What are we<br />shopping for?</h1>
+      </div>
+
+      <form class="card composer" id="composer" autocomplete="off">
+        <button class="store-btn" type="button" id="storeBtn" aria-haspopup="dialog">
+          <span class="disc empty" id="storeDisc"></span><span id="storeName">Pick a store</span>
+        </button>
+        <textarea id="wishlist" rows="3" placeholder="A cozy setup for my new apartment: a soft throw blanket, a reading lamp, and a pour-over kit. Size M."></textarea>
+        <div class="composer-foot">
+          <label class="budget-chip" for="budget"><span data-icon="wallet"></span>$<input type="number" id="budget" min="1" step="1" inputmode="numeric" placeholder="Budget" /></label>
+          <button class="go-btn" type="submit" id="buildBtn" aria-label="Build my cart" disabled></button>
         </div>
       </form>
+      <div class="banner" id="setupBanner" hidden style="margin-top:12px"></div>
+      <div class="center" style="margin-top:10px"><button class="text-link" type="button" id="manualBtn" data-icon="plus">Or add items yourself</button></div>
+
+      <section class="section dark-card" id="recentCard" hidden>
+        <div class="inner label">Jump back in</div>
+        <div class="carousel" id="recentRow"></div>
+        <div class="big"><h2>Your carts</h2><a class="round" href="#/carts" aria-label="See all carts" data-icon="arrow"></a></div>
+      </section>
+
+      <section class="section" id="ideas">
+        <div class="section-head"><h2>Need ideas?</h2></div>
+        <div class="ideas" id="ideaGrid"></div>
+      </section>
     </section>
 
-    <!-- Live agent card -->
-    <section class="section dark-card" id="progressCard" hidden aria-live="polite">
-      <div class="inner label"><span class="spinner" id="progSpin"></span><span id="progressLabel">Shopping</span></div>
-      <div class="carousel" id="liveTiles"></div>
-      <ul class="ticker" id="feed"></ul>
-      <div class="big">
-        <h2 id="progressTitle">Building<br />your cart</h2>
-        <button class="round" type="button" id="progBtn" aria-label="Stop"></button>
+    <!-- ============ Cart ============ -->
+    <section class="view" id="v-cart">
+      <div class="screen-head">
+        <a class="circle-btn" href="#/home" aria-label="Back" data-icon="back"></a>
+        <div class="title" id="cartTitle">Cart</div>
+        <button class="circle-btn" type="button" id="deleteCart" aria-label="Delete this cart" data-icon="trash"></button>
       </div>
-    </section>
-
-    <!-- Cart -->
-    <section class="section" id="cart" hidden>
-      <div class="section-head">
-        <div>
-          <h2 id="cartTitle">Your cart</h2>
-          <p class="muted small" id="summary" style="margin:6px 0 0" hidden></p>
-        </div>
-        <span class="muted small" id="cartCount" style="white-space:nowrap"></span>
+      <div style="margin:14px 2px 20px">
+        <h1 id="cartHeadline">Your cart</h1>
+        <p class="muted" id="cartSummary" style="margin:8px 0 0" hidden></p>
       </div>
       <ul class="grid" id="items"></ul>
 
-      <div class="card total-card" id="totalRow" style="margin-top:22px">
-        <div>
-          <div style="font-weight:700">Estimated total</div>
-          <div class="muted small" id="totalNote"></div>
-        </div>
-        <div class="amount" id="total">$0.00</div>
-      </div>
-
-      <div class="card" style="margin-top:14px">
+      <div class="card" id="refineCard" style="margin-top:26px">
         <form id="refineForm">
           <label for="refine">Ask for changes</label>
           <div class="inline-input">
+            <span class="lead" data-icon="sparkle"></span>
             <input type="text" id="refine" placeholder="Swap the lamp for something under $40" />
             <button class="go" type="submit" aria-label="Update the cart" data-icon="arrow"></button>
           </div>
         </form>
-        <details class="more" id="addManual">
-          <summary>Add an item by link</summary>
-          <form id="manualForm">
-            <div class="field">
-              <label for="mUrl">Product link</label>
-              <input type="url" id="mUrl" required placeholder="https://www.amazon.com/dp/B0..." />
-            </div>
-            <div class="field">
-              <label for="mTitle">Name</label>
-              <input type="text" id="mTitle" required placeholder="Ceramic pour-over set" />
-            </div>
-            <div class="row field">
-              <div>
-                <label for="mPrice">Price</label>
-                <input type="number" id="mPrice" min="0" step="0.01" placeholder="29.99" />
-              </div>
-              <div>
-                <label for="mQty">Qty</label>
-                <input type="number" id="mQty" min="1" max="99" value="1" />
-              </div>
-            </div>
-            <div class="field">
-              <label for="mVariant">Size / color <span class="hint">· optional</span></label>
-              <input type="text" id="mVariant" placeholder="Medium, oat" />
-            </div>
-            <div class="actions"><button class="btn btn-ink btn-block" type="submit" data-icon="plus">Add to cart</button></div>
-          </form>
-        </details>
       </div>
     </section>
 
-    <!-- Send -->
-    <section class="section" id="send" hidden>
-      <div class="section-head">
-        <div>
-          <h2>Send it</h2>
-          <p class="muted small" style="margin:6px 0 0">They'll see your note and the cart, then check out on <span id="sendStoreName">the store</span> in a couple of taps.</p>
-        </div>
+    <!-- ============ Carts list ============ -->
+    <section class="view" id="v-carts">
+      <div class="screen-head">
+        <a class="circle-btn" href="#/home" aria-label="Back" data-icon="back"></a>
+        <div class="title">Carts</div>
+        <a class="circle-btn" href="#/home" aria-label="New cart" data-icon="plus"></a>
       </div>
-      <div class="card">
-        <form id="sendForm">
-          <div class="row collapse field">
-            <div>
-              <label for="fromName">Your name</label>
-              <input type="text" id="fromName" required placeholder="Jordan" />
-            </div>
-            <div>
-              <label for="occasion">Occasion</label>
-              <select id="occasion">
-                <option value="">None</option>
-                <option>Birthday</option>
-                <option>Holiday</option>
-                <option>Graduation</option>
-                <option>Housewarming</option>
-                <option>Baby shower</option>
-                <option>Wedding</option>
-                <option>Just because</option>
-                <option>Back to school</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label for="note">Note <span class="hint">· optional</span></label>
-            <textarea id="note" rows="3" placeholder="Thank you so much! These are the exact ones I've been eyeing."></textarea>
-          </div>
-          <details class="more" id="shipDetails">
-            <summary>Add a shipping address</summary>
-            <p class="muted small" style="margin-top:0">Shown to the buyer so the order comes to you. Some Shopify stores fill it in at checkout automatically.</p>
-            <div class="field"><label for="sName">Full name</label><input type="text" id="sName" autocomplete="name" /></div>
-            <div class="field"><label for="sAddr1">Street address</label><input type="text" id="sAddr1" autocomplete="address-line1" /></div>
-            <div class="field"><label for="sAddr2">Apt, suite <span class="hint">· optional</span></label><input type="text" id="sAddr2" autocomplete="address-line2" /></div>
-            <div class="field"><label for="sCity">City</label><input type="text" id="sCity" autocomplete="address-level2" /></div>
-            <div class="row field">
-              <div><label for="sRegion">State</label><input type="text" id="sRegion" autocomplete="address-level1" placeholder="MI" /></div>
-              <div><label for="sPostal">ZIP</label><input type="text" id="sPostal" autocomplete="postal-code" /></div>
-            </div>
-            <div class="field"><label for="sCountry">Country</label><input type="text" id="sCountry" autocomplete="country" value="US" /></div>
-          </details>
-          <div class="actions"><button class="btn btn-brand btn-lg btn-block" type="submit" id="makeLinkBtn" data-icon="link">Create link</button></div>
-        </form>
-
-        <div id="shareBox" hidden>
-          <div class="banner" style="margin:20px 0 12px">Your cart link is ready.</div>
-          <div class="linkbox">
-            <input type="text" id="shareUrl" readonly aria-label="Cart link" />
-            <button class="btn btn-ink" id="copyBtn" type="button" data-icon="copy">Copy</button>
-          </div>
-          <div class="share-grid">
-            <button class="btn" id="nativeShare" type="button" data-icon="share">Share</button>
-            <a class="btn" id="smsLink" href="#" data-icon="message">Text</a>
-            <a class="btn" id="mailLink" href="#" data-icon="mail">Email</a>
-          </div>
-          <a class="btn btn-ghost btn-block" id="previewLink" href="#" target="_blank" rel="noopener" style="margin-top:8px" data-icon="external">Preview what they'll see</a>
-        </div>
-      </div>
+      <h1 style="margin:14px 2px 20px">Your carts</h1>
+      <ul class="cart-list" id="cartList"></ul>
     </section>
 
-    <footer class="foot">Cartpass never sees anyone's payment details.<br />The buyer always checks out on the store's own site.</footer>
+    <!-- ============ Profile ============ -->
+    <section class="view" id="v-you">
+      <div class="screen-head">
+        <a class="circle-btn" href="#/home" aria-label="Back" data-icon="back"></a>
+        <div class="title">You</div>
+        <span style="width:48px"></span>
+      </div>
+      <div class="profile-head">
+        <div class="avatar" id="youAvatar"></div>
+        <h2 id="youName">You</h2>
+        <p class="muted small" style="margin:0">Saved on this device only.</p>
+      </div>
+      <form id="profileForm" class="stack section" autocomplete="on">
+        <div class="card">
+          <div class="field"><label for="pName">Your name</label><input type="text" id="pName" autocomplete="given-name" placeholder="Jordan" /></div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:4px">Ship to</h3>
+          <p class="muted small" style="margin:0 0 16px">Shown to whoever buys your cart, so orders come to you. Turn it on per cart when you send.</p>
+          <div class="field"><label for="sName">Full name</label><input type="text" id="sName" autocomplete="name" /></div>
+          <div class="field"><label for="sAddr1">Street address</label><input type="text" id="sAddr1" autocomplete="address-line1" /></div>
+          <div class="field"><label for="sAddr2">Apt, suite <span class="hint">· optional</span></label><input type="text" id="sAddr2" autocomplete="address-line2" /></div>
+          <div class="field"><label for="sCity">City</label><input type="text" id="sCity" autocomplete="address-level2" /></div>
+          <div class="row field">
+            <div><label for="sRegion">State</label><input type="text" id="sRegion" autocomplete="address-level1" placeholder="MI" /></div>
+            <div><label for="sPostal">ZIP</label><input type="text" id="sPostal" autocomplete="postal-code" /></div>
+          </div>
+          <div class="field"><label for="sCountry">Country</label><input type="text" id="sCountry" autocomplete="country" value="US" /></div>
+        </div>
+        <div class="card" id="accessCard" hidden>
+          <div class="field"><label for="accessCode">Access code</label><input type="password" id="accessCode" placeholder="From the site owner" /></div>
+        </div>
+        <button class="btn btn-ink btn-lg btn-block" type="submit">Save</button>
+        <button class="btn btn-danger btn-block" type="button" id="resetAll">Clear everything on this device</button>
+      </form>
+    </section>
+
+    <footer class="foot" id="foot">Cartpass never sees anyone's payment details.<br />The buyer always checks out on the store's own site.</footer>
   </div>
 
-  <div class="dock">
-    <nav class="nav" aria-label="Sections">
-      <a href="#build" id="navBuild" class="active" aria-label="Build" data-icon="home"></a>
-      <a href="#cart" id="navCart" aria-label="Cart" data-icon="cart"><span class="dot-badge" id="navBadge" hidden>0</span></a>
-      <a href="#send" id="navSend" aria-label="Send" data-icon="send"></a>
+  <!-- ============ Shopping (agent running) ============ -->
+  <section class="view shopping" id="v-shopping" aria-live="polite">
+    <div class="wrap">
+      <div class="bar">
+        <div class="label"><span class="disc-sm" id="shopDisc"></span><span id="shopStore">Shopping</span></div>
+        <button class="pill-dark" type="button" id="stopBtn" data-icon="stop">Stop</button>
+      </div>
+      <div class="orb-row"><div class="orb" id="orb"></div></div>
+      <h1 id="shopHeadline">Finding the<br />good stuff</h1>
+      <div class="status" id="shopStatus">Getting started…</div>
+      <ul class="grid" id="liveGrid"></ul>
+      <ul class="ticker" id="feed"></ul>
+    </div>
+  </section>
+
+  <!-- ============ Docks ============ -->
+  <div class="dock" id="navDock">
+    <nav class="nav" aria-label="Main">
+      <a href="#/home" data-route="home" aria-label="Home" data-icon="home"></a>
+      <a href="#/carts" data-route="carts" aria-label="Carts" data-icon="bag"><span class="dot-badge" id="navBadge" hidden></span></a>
+      <a href="#/you" data-route="you" aria-label="You" data-icon="user"></a>
     </nav>
   </div>
+  <div class="dock away" id="cartDock">
+    <div class="checkout-bar">
+      <div class="sum"><b id="total">$0.00</b><span id="totalNote"></span></div>
+      <button class="btn btn-brand" type="button" id="sendBtn" data-icon="send">Send</button>
+    </div>
+  </div>
 
-  <script type="module" src="/builder.js"></script>
+  <!-- ============ Sheets ============ -->
+  <div class="scrim" id="scrim"></div>
+
+  <div class="sheet" id="storeSheet" role="dialog" aria-modal="true" aria-labelledby="storeSheetTitle">
+    <div class="grabber"></div>
+    <div class="sheet-head"><h2 id="storeSheetTitle">Pick a store</h2><button class="circle-btn" type="button" data-close aria-label="Close" data-icon="close"></button></div>
+    <div class="inline-input">
+      <span class="lead" data-icon="search"></span>
+      <input type="search" id="storeSearch" placeholder="Search or paste a shop's link" autocomplete="off" />
+    </div>
+    <ul class="store-list" id="storeList"></ul>
+  </div>
+
+  <div class="sheet" id="addSheet" role="dialog" aria-modal="true" aria-labelledby="addSheetTitle">
+    <div class="grabber"></div>
+    <div class="sheet-head"><h2 id="addSheetTitle">Add an item</h2><button class="circle-btn" type="button" data-close aria-label="Close" data-icon="close"></button></div>
+    <form id="manualForm">
+      <div class="field"><label for="mUrl">Product link</label><input type="url" id="mUrl" required placeholder="https://www.amazon.com/dp/B0..." /></div>
+      <div class="field"><label for="mTitle">Name</label><input type="text" id="mTitle" required placeholder="Ceramic pour-over set" /></div>
+      <div class="row field">
+        <div><label for="mPrice">Price</label><input type="number" id="mPrice" min="0" step="0.01" placeholder="29.99" /></div>
+        <div><label for="mQty">Qty</label><input type="number" id="mQty" min="1" max="99" value="1" /></div>
+      </div>
+      <div class="field"><label for="mVariant">Size / color <span class="hint">· optional</span></label><input type="text" id="mVariant" placeholder="Medium, oat" /></div>
+      <div class="actions"><button class="btn btn-ink btn-lg btn-block" type="submit" data-icon="plus">Add to cart</button></div>
+    </form>
+  </div>
+
+  <div class="sheet" id="sendSheet" role="dialog" aria-modal="true" aria-labelledby="sendSheetTitle">
+    <div class="grabber"></div>
+    <div id="sendFormWrap">
+      <div class="sheet-head"><h2 id="sendSheetTitle">Send your cart</h2><button class="circle-btn" type="button" data-close aria-label="Close" data-icon="close"></button></div>
+      <form id="sendForm" class="stack">
+        <div class="field"><label for="fromName">From</label><input type="text" id="fromName" required placeholder="Your name" /></div>
+        <div>
+          <label>Occasion</label>
+          <div class="chips" id="occasionChips"></div>
+        </div>
+        <div class="field"><label for="note">Note <span class="hint">· optional</span></label><textarea id="note" rows="3" placeholder="Thank you so much! These are the exact ones I've been eyeing."></textarea></div>
+        <label class="toggle-row" for="shipToggle">
+          <span class="grow">Include my shipping address<small id="shipPreview">Add one in your profile first</small></span>
+          <input type="checkbox" class="switch" id="shipToggle" />
+        </label>
+        <button class="btn btn-brand btn-lg btn-block" type="submit" id="makeLinkBtn" data-icon="link">Create link</button>
+      </form>
+    </div>
+    <div id="shareBox" hidden>
+      <div class="success">
+        <div class="check" data-icon="check"></div>
+        <h2>Ready to send</h2>
+        <p class="muted" style="margin:6px 0 18px">It opens with everything ready to order.</p>
+      </div>
+      <div class="linkbox">
+        <input type="text" id="shareUrl" readonly aria-label="Cart link" />
+        <button class="btn btn-ink" id="copyBtn" type="button" data-icon="copy">Copy</button>
+      </div>
+      <div class="share-grid">
+        <button class="btn" id="nativeShare" type="button" data-icon="share">Share</button>
+        <a class="btn" id="smsLink" href="#" data-icon="message">Text</a>
+        <a class="btn" id="mailLink" href="#" data-icon="mail">Email</a>
+      </div>
+      <a class="btn btn-ghost btn-block" id="previewLink" href="#" target="_blank" rel="noopener" style="margin-top:8px" data-icon="external">Preview what they'll see</a>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
 </body>
 </html>

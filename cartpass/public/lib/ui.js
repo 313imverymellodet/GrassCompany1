@@ -40,6 +40,16 @@ const ICONS = {
   gift: '<rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v7.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V12M12 8v13"/><path d="M12 8S10.5 3.5 8 4.2 8.6 8 12 8zm0 0s1.5-4.5 4-3.8S15.4 8 12 8z"/>',
   list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
+  back: '<path d="m15 5-7 7 7 7"/>',
+  chevron: '<path d="m9 5 7 7-7 7"/>',
+  down: '<path d="m6 9 6 6 6-6"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>',
+  bag: '<path d="M5 8h14l-1 12a1.5 1.5 0 0 1-1.5 1.4h-9A1.5 1.5 0 0 1 6 20z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+  wallet: '<rect x="3" y="6" width="18" height="14" rx="3"/><path d="M16 13h2M3 10h18"/>',
+  key: '<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3"/>',
+  bolt: '<path d="M13 3 5 14h6l-1 7 8-11h-6z" fill="currentColor" stroke="none"/>',
 };
 
 export function icon(name, cls) {
